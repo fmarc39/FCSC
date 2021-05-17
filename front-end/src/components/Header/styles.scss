@@ -1,0 +1,35 @@
+@import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 1rem;
+
+    &__logo {
+        height: 100px;
+        border-radius: 25px;
+        box-shadow: $box-shadow;
+    }
+
+    &__title {
+        font-size: $h1;
+        color: $third-color;
+        text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.151);
+    }
+
+    &__login-btn {
+        border: none;
+        padding: 1rem;
+        border-radius: 15px;
+        background-color: $main-color;
+        font-size: $litle;
+        font-weight: 400;
+        box-shadow: $box-shadow;
+        cursor: pointer;
+        &:hover {
+            background-color: $second-color;
+        }
+    }
+}
