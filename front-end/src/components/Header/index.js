@@ -1,15 +1,19 @@
 import React from 'react';
 import logo from 'components/Header/logo-fcsc.jpeg';
+import { useHistory, Link } from 'react-router-dom';
 import './styles.scss';
 
-const Header = ({ isAtuh, handleLogout }) => {
+const Header = ({ handleLogout }) => {
   const handleLogoutBtn = (event) => {
     event.preventDefault();
     handleLogout();
   };
+
   return (
     <header className="header">
-      <img src={logo} alt="club-logo" className="header__logo" />
+      <Link to="/">
+        <img src={logo} alt="club-logo" className="header__logo" />
+      </Link>
       <h1 className="header__title">Gestion sponsors FCSC</h1>
       <div>
         <button

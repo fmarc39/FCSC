@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/Header/index.js';
+import Header from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Header.js';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 function Copyright() {
   return (
@@ -63,10 +63,8 @@ const SignIn = ({ handleChange, email, password, handleSubmit, isAuth }) => {
     handleSubmit();
   };
 
-  const history = useHistory();
-
   if (isAuth) {
-    history.push('/home');
+    return <Redirect to="/home" />;
   }
 
   return (

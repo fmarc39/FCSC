@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import AddClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/AddClientModal/index.js';
-import { changeInput } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
+import {
+  changeInput,
+  submit,
+} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
 import { closeAddClientModal } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils';
 
 const mapStateToProps = (state) => ({
@@ -13,6 +16,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clodeModal: () => {
     dispatch(closeAddClientModal());
+  },
+
+  handleSubmit: () => {
+    dispatch(submit());
   },
 });
 

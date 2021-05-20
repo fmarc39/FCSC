@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Header.js';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import AddClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddClientModal.js';
 import ClientListTable from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientListTable.js';
 
-const Home = ({ handleOpenModal }) => {
+const Home = ({ handleOpenModal, fetchClients }) => {
   const handleChange = () => {
     console.log('ok');
   };
@@ -18,6 +18,10 @@ const Home = ({ handleOpenModal }) => {
     console.log('ok');
     handleOpenModal();
   };
+  useEffect(() => {
+    fetchClients();
+  }, []);
+
   return (
     <div>
       <Header />

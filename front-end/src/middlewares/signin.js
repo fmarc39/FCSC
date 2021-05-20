@@ -3,7 +3,7 @@ import api from '/Users/fmarc/Documents/Code/FCSC/front-end/src/api/api.js';
 import {
   HANDLE_SIGNIN,
   IsSignIn,
-  IS_SIGNIN,
+  LoginRedirect,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/user.js';
 
 export default (store) => (next) => (action) => {

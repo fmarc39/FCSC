@@ -8,36 +8,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from 'react-router-dom';
 
 const columns = [
-  { id: 'name', label: 'Nom commercial', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
+  { id: 'commercial_name', label: 'Nom commercial', minWidth: 170 },
+  { id: 'first_name', label: 'Prénom', minWidth: 100 },
+  { id: 'last_name', label: 'Nom de famille', minWidth: 100 },
 ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
+function createData(id, commercial_name, first_name, last_name) {
+  return { id, commercial_name, first_name, last_name };
 }
 
 const useStyles = makeStyles({
@@ -53,8 +33,14 @@ const ClientTable = ({ clientData }) => {
   const classes = useStyles();
 
   const rows = clientData.map((client) => {
-    createData(client.commercialName);
+    return createData(
+      client.id,
+      client.commercial_name,
+      client.first_name,
+      client.last_name
+    );
   });
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -94,8 +80,10 @@ const ClientTable = ({ clientData }) => {
                       <TableRow
                         hover
                         role="checkbox"
+                        component={Link}
+                        to={`/client/${row.id}`}
                         tabIndex={-1}
-                        key={row.code}
+                        key={row.id}
                       >
                         {columns.map((column) => {
                           const value = row[column.id];

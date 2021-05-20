@@ -1,0 +1,57 @@
+@import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
+
+.client-box {
+    background-color: rgba(255, 255, 255, 0.454);
+
+    margin: 1rem;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: $box-shadow;
+    &__del-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    &__back-btn {
+        position: absolute;
+        top: 1rem;
+        left: 1rem
+
+    }
+    &__commercial-name {
+        font-size: $h1;
+        color: $third-color;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+
+    &__title {
+        font-size: $litle;
+        font-weight: bold;
+    }
+    &__title-right {
+        font-size: $normal;
+        font-weight: bold;
+    }
+    &__contact-name {
+        text-align: center;
+        font-size: $large;
+    }
+    &__right {
+        width: 75%;
+        padding: 1.5rem;
+        text-align: center;
+   
+    }
+    &__left {
+        width: 25%;
+        padding: 1.5rem;
+    }
+
+}

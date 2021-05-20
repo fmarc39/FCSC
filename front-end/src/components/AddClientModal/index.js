@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-const AddClientModal = ({ changeInput, isOpen, clodeModal }) => {
+const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
   const classes = useStyles();
 
   const handleCloseModal = () => {
@@ -32,6 +32,11 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal }) => {
 
   const handleChangeInput = (event) => {
     changeInput(event.target.value, event.target.name);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit();
   };
 
   return (
@@ -50,7 +55,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal }) => {
       >
         <Fade in={isOpen}>
           <div className={classes.paper}>
-            <form>
+            <form onSubmit={handleFormSubmit}>
               <div>
                 <TextField
                   id="outlined-basic"
@@ -123,18 +128,12 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal }) => {
                   name="city"
                   onChange={handleChangeInput}
                 />
-                <TextField
-                  id="outlined-basic"
-                  label="SIREN"
-                  variant="outlined"
-                  name="siren"
-                  onChange={handleChangeInput}
-                />
               </div>
               <Button
                 variant="contained"
                 color="primary"
                 size="large"
+                type="submit"
                 className={classes.button}
                 startIcon={<SaveIcon />}
                 onChange={handleChangeInput}
