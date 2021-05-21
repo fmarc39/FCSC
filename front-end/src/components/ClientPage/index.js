@@ -7,13 +7,18 @@ import Divider from '@material-ui/core/Divider';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import ChatIcon from '@material-ui/icons/Chat';
+import AddPaymentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddPaymentModal.js';
+import AddCommentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddCommentModal.js';
 
-const index = () => {
+const index = ({ openPaymentModal, openAddCommentModal }) => {
+  const handleAddPaymentBtn = () => {
+    openPaymentModal();
+  };
+  const handleAddCommentBtn = () => {
+    openAddCommentModal();
+  };
   return (
     <div className="client">
       <Header />
@@ -76,22 +81,19 @@ const index = () => {
               <MenuItem value={20}>Ruby</MenuItem>
               <MenuItem value={30}>Emeraude</MenuItem>
             </Select>
-            <p className="content__title-right">Date de facturation</p>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                label="Date de paiement"
-                format="dd/MM/yyyy"
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </MuiPickersUtilsProvider>
+            <p className="content__title-right">Facturation</p>
+            <IconButton aria-label="addPayment" onClick={handleAddPaymentBtn}>
+              <CreditCardIcon />
+            </IconButton>
             <p className="content__title-right">Commentaires</p>
+            <IconButton aria-label="addPayment" onClick={handleAddCommentBtn}>
+              <ChatIcon />
+            </IconButton>
           </div>
         </div>
       </div>
+      <AddPaymentModal />
+      <AddCommentModal />
     </div>
   );
 };

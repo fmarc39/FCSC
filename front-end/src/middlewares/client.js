@@ -7,6 +7,7 @@ import {
   saveNewClient,
 } from 'actions/addClient';
 import { closeAddClientModal } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils.js';
+import { SUBMIT_ADD_COMMENT } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addComment.js';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -43,6 +44,13 @@ export default (store) => (next) => (action) => {
     case FETCH_CLIENTS:
       api.get('/clients').then((response) => {
         store.dispatch(saveClients(response.data.clients));
+      });
+      return next(action);
+    case SUBMIT_ADD_COMMENT:
+      const { commentInput } = store.getState().client;
+      api.post('/addComment', {
+        commentInput,
+        clientId: 1,
       });
       return next(action);
     default:

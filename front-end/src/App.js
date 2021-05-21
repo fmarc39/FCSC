@@ -2,7 +2,7 @@ import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Home.js';
 import SignIn from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Signin.js';
-import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/ClientPage/index.js';
+import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientPage.js';
 
 function App({ isAuth }) {
   return (
