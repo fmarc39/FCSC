@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(closeAddCommentModal());
   },
 
-  handleSubmit: () => {
-    dispatch(submitAddComment());
+  handleSubmit: (clientId) => {
+    dispatch(submitAddComment(clientId));
   },
 });
 

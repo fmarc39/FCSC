@@ -7,6 +7,8 @@ export const changeInputAddPayment = (value, fieldName) => ({
   fieldName,
 });
 
-export const submitAddPayment = () => ({
+export const submitAddPayment = (amount, date) => ({
   type: SUBMIT_ADD_PAYMENT,
+  amount,
+  date,
 });

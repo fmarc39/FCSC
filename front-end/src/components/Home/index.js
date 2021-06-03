@@ -9,14 +9,23 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import AddClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddClientModal.js';
 import ClientListTable from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientListTable.js';
+import './styles.scss';
 
-const Home = ({ handleOpenModal, fetchClients }) => {
-  const handleChange = () => {
-    console.log('ok');
+const Home = ({
+  handleOpenModal,
+  fetchClients,
+  handleChange,
+  handleSubmit,
+}) => {
+  const handleChangeInput = (event) => {
+    handleChange(event.target.value, event.target.name);
   };
   const handleOpenModalBtn = () => {
-    console.log('ok');
     handleOpenModal();
+  };
+  const handleSearchFormSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit();
   };
   useEffect(() => {
     fetchClients();
@@ -25,22 +34,30 @@ const Home = ({ handleOpenModal, fetchClients }) => {
   return (
     <div>
       <Header />
-      <div>
-        <Fab color="primary" aria-label="add" onClick={handleOpenModalBtn}>
-          <AddIcon />
-        </Fab>
-        <form>
-          <TextField id="standard-basic" label="Standard" />
+      <div className="add-client">
+        <div className="add-client__add-btn">
+          <Fab color="primary" aria-label="add" onClick={handleOpenModalBtn}>
+            <AddIcon />
+          </Fab>
+        </div>
+        <form className="add-client__form" onSubmit={handleSearchFormSubmit}>
+          <TextField
+            onChange={handleChangeInput}
+            name="searchInput"
+            label="Votre recherche"
+          />
           <Select
-            labelId="demo-simple-select-label"
+            label="type"
             id="demo-simple-select"
-            onChange={handleChange}
+            name="searchSelect"
+            onChange={handleChangeInput}
+            defaultValue="commercial_name"
           >
-            <MenuItem value={10}>Nom</MenuItem>
-            <MenuItem value={20}>Tel</MenuItem>
-            <MenuItem value={30}>Gerant</MenuItem>
+            <MenuItem value="commercial_name">Entreprise</MenuItem>
+            <MenuItem value="cel_phone">Portable</MenuItem>
+            <MenuItem value="last_name">Nom de famille</MenuItem>
           </Select>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" type="submit">
             <DoneIcon />
           </IconButton>
         </form>

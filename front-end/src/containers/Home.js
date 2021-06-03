@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
-import Home from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/Home';
-import { openAddClientModal } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils.js';
-import { fetchClients } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
+import Home from 'components/Home';
+import { openAddClientModal } from 'actions/utils.js';
+import {
+  fetchClients,
+  handleSearchInputChange,
+  handleSubmitSearchClient,
+} from 'actions/addClient.js';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
@@ -14,6 +18,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchClients: () => {
     dispatch(fetchClients());
+  },
+  handleChange: (value, fieldName) => {
+    dispatch(handleSearchInputChange(value, fieldName));
+  },
+  handleSubmit: () => {
+    dispatch(handleSubmitSearchClient());
   },
 });
 

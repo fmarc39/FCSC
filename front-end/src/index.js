@@ -4,13 +4,14 @@ import './index.css';
 import App from '../src/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import history from '../src/selectors/history';
 import store from '/Users/fmarc/Documents/Code/FCSC/front-end/src/store/store.js';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <App />
       </Router>
     </Provider>

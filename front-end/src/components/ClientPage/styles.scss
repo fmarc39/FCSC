@@ -1,7 +1,7 @@
 @import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
 
 .client-box {
-    background-color: rgba(255, 255, 255, 0.454);
+    background-color: rgba(255, 255, 255, 0.9);
 
     margin: 1rem;
     position: relative;
@@ -54,4 +54,15 @@
         padding: 1.5rem;
     }
 
+}
+
+.comment {
+
+
+    &__box {
+        min-width: 100px;
+        padding: 1rem;
+        box-shadow: $box-shadow;
+        margin-bottom: $litle;
+    }
 }

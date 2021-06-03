@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -6,7 +6,9 @@ import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
+import CancelIcon from '@material-ui/icons/Cancel';
 import './styles.scss';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,12 +29,27 @@ const useStyles = makeStyles((theme) => ({
     margin: '.5rem',
   },
 }));
-const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
+const EditClientModal = ({
+  changeInput,
+  isOpen,
+  clodeModal,
+  handleSubmit,
+  first_name,
+  last_name,
+  commercial_name,
+  fix_phone,
+  cel_phone,
+  email,
+  adress,
+  zip_code,
+  city,
+}) => {
   const classes = useStyles();
 
   const handleCloseModal = () => {
     clodeModal();
   };
+  const clientId = useParams();
 
   const handleChangeInput = (event) => {
     changeInput(event.target.value, event.target.name);
@@ -40,7 +57,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    handleSubmit();
+    handleSubmit(clientId.id);
   };
 
   return (
@@ -67,7 +84,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   className={classes.input}
                   label="Nom"
                   variant="outlined"
-                  name="lastName"
+                  name="first_name"
+                  value={first_name}
                   onChange={handleChangeInput}
                 />
                 <TextField
@@ -76,7 +94,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   className={classes.input}
                   label="Prénom"
                   variant="outlined"
-                  name="firstName"
+                  name="last_name"
+                  value={last_name}
                   onChange={handleChangeInput}
                 />
               </div>
@@ -87,7 +106,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   className={classes.input}
                   label="Noms commerciaux"
                   variant="outlined"
-                  name="commercialName"
+                  name="commercial_name"
+                  value={commercial_name}
                   onChange={handleChangeInput}
                 />
                 <TextField
@@ -96,7 +116,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   label="Telephone fixe"
                   type="number"
                   variant="outlined"
-                  name="fixPhone"
+                  name="fix_phone"
+                  value={fix_phone}
                   onChange={handleChangeInput}
                 />
               </div>
@@ -108,7 +129,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   label="Telephone portable"
                   variant="outlined"
                   type="number"
-                  name="celPhone"
+                  name="cel_phone"
+                  value={cel_phone}
                   onChange={handleChangeInput}
                 />
                 <TextField
@@ -118,6 +140,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   type="email"
                   variant="outlined"
                   name="email"
+                  value={email}
                   onChange={handleChangeInput}
                 />
               </div>
@@ -129,6 +152,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   label="Adresse"
                   variant="outlined"
                   name="adress"
+                  value={adress}
                   onChange={handleChangeInput}
                 />
                 <TextField
@@ -137,7 +161,8 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   className={classes.input}
                   label="Code postal"
                   variant="outlined"
-                  name="zipCode"
+                  name="zip_code"
+                  value={zip_code}
                   onChange={handleChangeInput}
                 />
               </div>
@@ -149,6 +174,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   label="Ville"
                   variant="outlined"
                   name="city"
+                  value={city}
                   onChange={handleChangeInput}
                 />
               </div>
@@ -160,9 +186,21 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                 type="submit"
                 className={classes.button}
                 startIcon={<SaveIcon />}
-                onChange={handleChangeInput}
+                onClick={handleFormSubmit}
               >
-                Save
+                Valider
+              </Button>
+              <Button
+                variant="contained"
+                required="true"
+                color="primary"
+                size="large"
+                type="submit"
+                className={classes.button}
+                startIcon={<CancelIcon />}
+                onClick={handleCloseModal}
+              >
+                Annuler
               </Button>
             </form>
           </div>
@@ -172,4 +210,4 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
   );
 };
 
-export default AddClientModal;
+export default EditClientModal;

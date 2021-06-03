@@ -3,9 +3,19 @@ import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/component
 import {
   openAddPaymentModal,
   openAddCommentModal,
-} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils';
+  fetchClientDataFromDb,
+  openDeleteModal,
+  openEditModal,
+  openSuscribeModal,
+} from 'actions/utils';
 
-const mapStateToProps = (state) => ({});
+import { deleteComment } from 'actions/addComment.js';
+import { deleteSub } from 'actions/Subscription';
+
+const mapStateToProps = (state) => ({
+  clientData: state.client.clientPage,
+  comments: state.client.clientPage.comments,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   openPaymentModal: () => {
@@ -13,6 +23,25 @@ const mapDispatchToProps = (dispatch) => ({
   },
   openAddCommentModal: () => {
     dispatch(openAddCommentModal());
+  },
+  fetchClientInfos: (clientId) => {
+    dispatch(fetchClientDataFromDb(clientId));
+  },
+  deleteComment: (commentId) => {
+    dispatch(deleteComment(commentId));
+  },
+
+  openDeleteConfirmationModal: () => {
+    dispatch(openDeleteModal());
+  },
+  openEditClientModal: () => {
+    dispatch(openEditModal());
+  },
+  openAddSuscriptionModal: () => {
+    dispatch(openSuscribeModal());
+  },
+  handleDeleteSusb: (clientId) => {
+    dispatch(deleteSub(clientId));
   },
 });
 

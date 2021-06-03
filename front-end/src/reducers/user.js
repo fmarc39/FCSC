@@ -3,6 +3,7 @@ import {
   IS_SIGNIN,
   LOGOUT,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/user.js';
+import history from '../selectors/history';
 
 const initialState = {
   email: '',
@@ -24,10 +25,14 @@ const reducer = (state = initialState, action = {}) => {
       };
     case LOGOUT:
       localStorage.removeItem('user');
+      history.push('/');
       return {
         ...state,
         isAuth: false,
+        email: '',
+        password: '',
       };
+
     default:
       return state;
   }

@@ -1,0 +1,26 @@
+@import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
+
+.add-client {
+    width: 100%;
+    margin-bottom: $large;
+    text-align: center;
+
+    &__form {
+        display: flex;
+        justify-content: center;
+    }
+    &__add-btn {
+        margin-bottom: $normal;
+    }
+
+}
+
+.header-title {
+    font-weight: bold;
+    font-size: $normal;
+}
+
+.header-body {
+    font-size: $litle;
+    text-decoration: none;
+}

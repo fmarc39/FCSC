@@ -22,7 +22,7 @@ function createData(id, commercial_name, first_name, last_name) {
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    margin: '2rem',
   },
   container: {
     maxHeight: 440,
@@ -67,7 +67,7 @@ const ClientTable = ({ clientData }) => {
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
                     >
-                      {column.label}
+                      <div className="header-title"> {column.label}</div>
                     </TableCell>
                   ))}
                 </TableRow>
@@ -81,7 +81,10 @@ const ClientTable = ({ clientData }) => {
                         hover
                         role="checkbox"
                         component={Link}
+                        style={{ textDecoration: 'none' }}
                         to={`/client/${row.id}`}
+                        name={row.id}
+                        className="tableRow"
                         tabIndex={-1}
                         key={row.id}
                       >
@@ -89,9 +92,11 @@ const ClientTable = ({ clientData }) => {
                           const value = row[column.id];
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
+                              <div className="header-body">
+                                {column.format && typeof value === 'number'
+                                  ? column.format(value)
+                                  : value}
+                              </div>
                             </TableCell>
                           );
                         })}
@@ -102,7 +107,8 @@ const ClientTable = ({ clientData }) => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[10, 25, 50]}
+            labelRowsPerPage="Résultats par page"
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

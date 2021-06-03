@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
 import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,25 +21,21 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
-const AddPaymentModal = ({
-  isOpen,
-  closeModal,
-  handleSubmit,
-  changeInput,
-  value,
-}) => {
+const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
   const classes = useStyles();
   const handleClose = () => {
     closeModal();
   };
   const clientId = useParams();
 
-  const handleSubmitForm = (event) => {
+  const handleAddsubscription = (event) => {
     event.preventDefault();
-    handleSubmit(clientId.id);
+    handlesubscription(selectValue, clientId.id);
   };
-  const handleChangeInput = (event) => {
-    changeInput(event.target.value);
+
+  const [selectValue, setSelectValue] = useState('Diamant');
+  const handleSelectChange = (event) => {
+    setSelectValue(event.target.value);
   };
 
   return (
@@ -58,19 +54,25 @@ const AddPaymentModal = ({
       >
         <Fade in={isOpen}>
           <div className={classes.paper}>
-            <h3>Ajouter un commentaire</h3>
-            <form onSubmit={handleSubmitForm}>
-              <TextField
-                id="standard-basic"
-                label="Standard"
-                value={value}
-                onChange={handleChangeInput}
-              />
+            <h3>Ajouter un abonnement</h3>
+            <form onSubmit={handleAddsubscription}>
+              <Select
+                native
+                onChange={handleSelectChange}
+                defaultValue={selectValue}
+                value={selectValue}
+              >
+                <option aria-label="None" value="" />
+                <option value="Diamant">Diamant</option>
+                <option value="Or">Or</option>
+                <option value="Argent">Argent</option>
+              </Select>
               <Button
                 variant="contained"
                 color="primary"
                 size="small"
                 type="submit"
+                onSubmit={handleAddsubscription}
                 className={classes.button}
                 startIcon={<SaveIcon />}
               >

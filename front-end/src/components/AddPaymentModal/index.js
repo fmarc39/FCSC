@@ -30,11 +30,15 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
   const handleClose = () => {
     closeModal();
   };
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const [amount, changeAmount] = useState('');
+  const handleChangeAmount = (event) => {
+    changeAmount(event.target.value);
+  };
   const handleAddPaymentSubmit = (event) => {
     event.preventDefault();
-    handleSubmit();
+    handleSubmit(amount, selectedDate);
   };
-  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <div>
@@ -68,7 +72,12 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
                     }}
                   />
                 </MuiPickersUtilsProvider>
-                <TextField id="standard-basic" label="Montant €" />
+                <TextField
+                  id="standard-basic"
+                  label="Montant €"
+                  value={amount}
+                  onChange={handleChangeAmount}
+                />
               </div>
               <Button
                 variant="contained"
