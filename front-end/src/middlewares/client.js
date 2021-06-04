@@ -24,7 +24,7 @@ import {
   DELETE_COMMENT,
   deleteCommentInState,
 } from 'actions/addComment.js';
-import { SUBMIT_ADD_PAYMENT } from 'actions/addPayment.js';
+import { SUBMIT_ADD_PAYMENT, saveNewPayment } from 'actions/addPayment.js';
 import history from '../selectors/history';
 import {
   HANDLE_SUBSRIPTION,
@@ -82,11 +82,16 @@ export default (store) => (next) => (action) => {
         });
       return next(action);
     case SUBMIT_ADD_PAYMENT:
-      api.post('/addPayment', {
-        amount: action.amount,
-        date: action.date,
-        clientId: store.getState().client.clientId,
-      });
+      api
+        .post('/addPayment', {
+          amount: action.amount,
+          date: action.date,
+          clientId: action.clientId,
+        })
+        .then((payment) => {
+          console.log(payment.data.payments);
+          store.dispatch(saveNewPayment(payment.data.payments));
+        });
       return next(action);
     case FETCH_CLIENT_DATA_FROM_DB:
       api.get(`client/${action.clientId}`).then((client) => {

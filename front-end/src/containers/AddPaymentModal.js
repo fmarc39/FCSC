@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(closeAddPaymentModal());
   },
 
-  handleSubmit: (amount, date) => {
-    dispatch(submitAddPayment(amount, date));
+  handleSubmit: (amount, date, clientId) => {
+    dispatch(submitAddPayment(amount, date, clientId));
   },
 });
 

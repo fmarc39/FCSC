@@ -10,6 +10,7 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import { useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
+  const clientId = useParams();
   const classes = useStyles();
   const handleClose = () => {
     closeModal();
@@ -37,7 +39,7 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
   };
   const handleAddPaymentSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(amount, selectedDate);
+    handleSubmit(amount, selectedDate, clientId.id);
   };
 
   return (

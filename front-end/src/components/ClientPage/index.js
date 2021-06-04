@@ -20,6 +20,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import EditClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/EditClientModal.js';
 import AddSucriptionModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddSuscriptionModal.js';
 import Tooltip from '@material-ui/core/Tooltip';
+import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
+import PhoneIcon from '@material-ui/icons/Phone';
+import EmailIcon from '@material-ui/icons/Email';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import MapIcon from '@material-ui/icons/Map';
 
 const ClientPage = ({
   openPaymentModal,
@@ -98,6 +104,7 @@ const ClientPage = ({
             <div className="content__box">
               <p className="content__title">Portable</p>
               <p>
+                <PhoneAndroidIcon />
                 <a href="tel:">{clientData.cel_phone}</a>
               </p>
             </div>
@@ -105,6 +112,7 @@ const ClientPage = ({
             <div>
               <p className="content__title">Fixe</p>
               <p>
+                <PhoneIcon />
                 <a href="tel:">{clientData.fix_phone}</a>
               </p>
             </div>
@@ -112,21 +120,25 @@ const ClientPage = ({
             <div>
               <p className="content__title">Email</p>
               <p>
+                <EmailIcon />
                 <a href={'mailto:san@antonio.net'}>{clientData.email}</a>
               </p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Adresse</p>
+              <LocationOnIcon />
               <p>{clientData.adress}</p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Code Postal</p>
+              <MapIcon />
               <p>{clientData.zip_code}</p>
             </div>
             <Divider />
             <p className="content__title">Ville</p>
+            <LocationCityIcon />
             <p>{clientData.city}</p>
           </div>
           <Divider orientation="vertical" flexItem />
