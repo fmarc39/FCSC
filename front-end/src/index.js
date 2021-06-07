@@ -6,13 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import history from '../src/selectors/history';
-import store from '/Users/fmarc/Documents/Code/FCSC/front-end/src/store/store.js';
+import {
+  store,
+  persistor,
+} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/store/store.js';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </Router>
     </Provider>
   </React.StrictMode>,

@@ -10,5 +10,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancers = composeEnhancers(applyMiddleware(signin, client));
 
 const store = createStore(reducer, enhancers);
+const persistor = persistStore(store);
 
-export default store;
+export { store, persistor };
