@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore } from 'redux-persist';
 
 import reducer from '/Users/fmarc/Documents/Code/FCSC/front-end/src/reducers/index.js';
 import signin from '/Users/fmarc/Documents/Code/FCSC/front-end/src/middlewares/signin.js';

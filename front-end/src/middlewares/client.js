@@ -17,6 +17,7 @@ import {
   closeDeleteModal,
   closeEditClientModal,
   closeSuscriptionModal,
+  closeAddPaymentModal,
 } from 'actions/utils.js';
 import {
   SUBMIT_ADD_COMMENT,
@@ -91,6 +92,7 @@ export default (store) => (next) => (action) => {
         .then((payment) => {
           console.log(payment.data.payments);
           store.dispatch(saveNewPayment(payment.data.payments));
+          store.dispatch(closeAddPaymentModal());
         });
       return next(action);
     case FETCH_CLIENT_DATA_FROM_DB:

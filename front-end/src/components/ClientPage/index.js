@@ -166,6 +166,16 @@ const ClientPage = ({
 
             <div>
               <p className="content__title-right">Facturation</p>
+              {!clientData.payments && <p>Pas de facture pour ce client</p>}
+              {clientData.payments &&
+                clientData.payments.map((payment) => {
+                  return (
+                    <div>
+                      <p>{payment.amount} €</p>
+                      <p>{payment.date}</p>
+                    </div>
+                  );
+                })}
               <Tooltip title="Ajouter un paiement" arrow>
                 <IconButton
                   aria-label="addPayment"

@@ -15,6 +15,7 @@ import {
   SAVE_SUBSCRIPTION_IN_STATE,
   DELETE_SUB_IN_STATE,
 } from 'actions/Subscription';
+import { SAVE_NEW_PAYMENT } from 'actions/addPayment';
 
 const initialState = {
   firstName: '',
@@ -102,6 +103,14 @@ const reducer = (state = initialState, action = {}) => {
         clientPage: {
           ...state.clientPage,
           subscription: null,
+        },
+      };
+    case SAVE_NEW_PAYMENT:
+      return {
+        ...state,
+        clientPage: {
+          ...state.clientPage,
+          payments: [...state.clientPage.payments, action.payload],
         },
       };
     default:
