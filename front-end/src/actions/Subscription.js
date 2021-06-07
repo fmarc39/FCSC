@@ -12,7 +12,7 @@ export const handlesubscription = (value, clientId) => ({
 });
 
 export const saveSubscriptionInState = (payload) => ({
-  type: SAVE_CLIENT_DATA_IN_STATE,
+  type: SAVE_SUBSCRIPTION_IN_STATE,
   payload,
 });
 

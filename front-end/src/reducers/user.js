@@ -8,6 +8,7 @@ import history from '../selectors/history';
 const initialState = {
   email: '',
   password: '',
+  accessToken: '',
   isAuth: false,
 };
 
@@ -22,15 +23,17 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isAuth: true,
+        accessToken: action.payload.accessToken,
       };
+
     case LOGOUT:
-      localStorage.removeItem('user');
       history.push('/');
       return {
         ...state,
         isAuth: false,
         email: '',
         password: '',
+        accessToken: '',
       };
 
     default:

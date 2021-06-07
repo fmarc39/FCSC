@@ -1,4 +1,3 @@
-import { act } from '@testing-library/react';
 import {
   CHANGE_INPUT,
   SAVE_CLIENTS,

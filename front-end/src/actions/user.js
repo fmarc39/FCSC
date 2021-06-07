@@ -14,8 +14,9 @@ export const handleSignin = () => ({
   type: HANDLE_SIGNIN,
 });
 
-export const IsSignIn = () => ({
+export const IsSignIn = (payload) => ({
   type: IS_SIGNIN,
+  payload,
 });
 
 export const logout = () => ({

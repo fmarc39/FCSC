@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import api from '/Users/fmarc/Documents/Code/FCSC/front-end/src/api/api.js';
+import history from '../selectors/history';
 import {
   SUBMIT,
   SUBMIT_EDIT_CLIENT,
@@ -26,7 +27,7 @@ import {
   deleteCommentInState,
 } from 'actions/addComment.js';
 import { SUBMIT_ADD_PAYMENT, saveNewPayment } from 'actions/addPayment.js';
-import history from '../selectors/history';
+
 import {
   HANDLE_SUBSRIPTION,
   saveSubscriptionInState,
@@ -96,9 +97,17 @@ export default (store) => (next) => (action) => {
         });
       return next(action);
     case FETCH_CLIENT_DATA_FROM_DB:
-      api.get(`client/${action.clientId}`).then((client) => {
-        store.dispatch(saveClientDataInState(client.data.client));
-      });
+      api
+        .get(`client/${action.clientId}`)
+        .then((client) => {
+          store.dispatch(saveClientDataInState(client.data.client));
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+            console.log('ok');
+          }
+        });
       return next(action);
     case DELETE_COMMENT:
       api.delete(`/deleteComment/${action.commentId}`).then((comment) => {
