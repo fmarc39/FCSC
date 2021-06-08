@@ -16,6 +16,7 @@ const Home = ({
   fetchClients,
   handleChange,
   handleSubmit,
+  isAuth,
 }) => {
   const handleChangeInput = (event) => {
     handleChange(event.target.value, event.target.name);
@@ -28,8 +29,16 @@ const Home = ({
     handleSubmit();
   };
   useEffect(() => {
-    fetchClients();
-  }, []);
+    //defining the async function
+    async function fetchFromAPI() {
+      try {
+        await fetchClients();
+      } catch {}
+    }
+
+    //executing the async function:
+    if (isAuth) fetchFromAPI();
+  }, [isAuth]);
 
   return (
     <div>
@@ -57,7 +66,7 @@ const Home = ({
             <MenuItem value="cel_phone">Portable</MenuItem>
             <MenuItem value="last_name">Nom de famille</MenuItem>
           </Select>
-          <IconButton aria-label="delete" type="submit">
+          <IconButton type="submit">
             <DoneIcon />
           </IconButton>
         </form>

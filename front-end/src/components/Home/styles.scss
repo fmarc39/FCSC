@@ -4,10 +4,19 @@
     width: 100%;
     margin-bottom: $large;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &__form {
         display: flex;
         justify-content: center;
+        background-color: white;
+        width: 350px;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: $box-shadow;
     }
     &__add-btn {
         margin-bottom: $normal;

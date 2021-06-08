@@ -8,8 +8,6 @@ import './styles.scss';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -26,6 +24,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import MapIcon from '@material-ui/icons/Map';
+import ProfilLogo from './user.svg';
 
 const ClientPage = ({
   openPaymentModal,
@@ -74,14 +73,17 @@ const ClientPage = ({
       <div className="client-box">
         <div className="client-box__del-btn">
           <Tooltip title="supprimer le client" arrow>
-            <IconButton onClick={handleDeleteClientBtn}>
+            <IconButton
+              onClick={handleDeleteClientBtn}
+              style={{ color: 'white' }}
+            >
               <DeleteIcon />
             </IconButton>
           </Tooltip>
         </div>
         <div className="client-box__back-btn">
           <Link to="/home">
-            <IconButton>
+            <IconButton style={{ color: 'white' }}>
               <ArrowBackIosIcon />
             </IconButton>
           </Link>
@@ -92,6 +94,11 @@ const ClientPage = ({
 
         <div className="content">
           <div className="content__left">
+            <img
+              src={ProfilLogo}
+              alt="logo-profil"
+              className="content__header-icon"
+            />
             <h2 className="content__contact-name">
               {clientData.first_name} {clientData.last_name}
               <Tooltip title="modifier les informations du client" arrow>
@@ -103,68 +110,80 @@ const ClientPage = ({
             <Divider />
             <div className="content__box">
               <p className="content__title">Portable</p>
-              <p>
-                <PhoneAndroidIcon />
+              <p className="content__content">
+                <PhoneAndroidIcon className="content__icon" />
                 <a href="tel:">{clientData.cel_phone}</a>
               </p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Fixe</p>
-              <p>
-                <PhoneIcon />
+              <p className="content__content">
+                <PhoneIcon className="content__icon" />
                 <a href="tel:">{clientData.fix_phone}</a>
               </p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Email</p>
-              <p>
-                <EmailIcon />
+              <p className="content__content">
+                <EmailIcon className="content__icon" />
                 <a href={'mailto:san@antonio.net'}>{clientData.email}</a>
               </p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Adresse</p>
-              <LocationOnIcon />
-              <p>{clientData.adress}</p>
+
+              <p className="content__content">
+                {' '}
+                <LocationOnIcon className="content__icon" /> {clientData.adress}
+              </p>
             </div>
             <Divider />
             <div>
               <p className="content__title">Code Postal</p>
-              <MapIcon />
-              <p>{clientData.zip_code}</p>
+
+              <p className="content__content">
+                {' '}
+                <MapIcon className="content__icon" /> {clientData.zip_code}
+              </p>
             </div>
             <Divider />
             <p className="content__title">Ville</p>
-            <LocationCityIcon />
-            <p>{clientData.city}</p>
+
+            <p className="content__content">
+              {' '}
+              <LocationCityIcon className="content__icon" />
+              {clientData.city}
+            </p>
           </div>
           <Divider orientation="vertical" flexItem />
           <div className="content__right">
-            <p className="content__title-right">Type d'abonnement</p>
-            {!clientData.subscription && (
-              <div>
-                <p>Pas de contrat pour ce client</p>
-                <Tooltip title="ajouter un contrat" arrow>
-                  <IconButton onClick={handleAddSusriptionBtn}>
-                    <AddCircleOutlineOutlinedIcon />
+            <div className="content__right-theme">
+              <p className="content__title-right">Type d'abonnement</p>
+              {!clientData.subscription && (
+                <div>
+                  <p>Pas de contrat pour ce client</p>
+                  <Tooltip title="ajouter un contrat" arrow>
+                    <IconButton onClick={handleAddSusriptionBtn}>
+                      <AddCircleOutlineOutlinedIcon />
+                    </IconButton>
+                  </Tooltip>
+                </div>
+              )}
+
+              {clientData.subscription && (
+                <div>
+                  <p>{clientData.subscription}</p>
+                  <IconButton aria-label="delete" onClick={handleDeleteSusbBtn}>
+                    <DeleteForeverIcon />
                   </IconButton>
-                </Tooltip>
-              </div>
-            )}
+                </div>
+              )}
+            </div>
 
-            {clientData.subscription && (
-              <div>
-                <p>{clientData.subscription}</p>
-                <IconButton aria-label="delete" onClick={handleDeleteSusbBtn}>
-                  <DeleteForeverIcon />
-                </IconButton>
-              </div>
-            )}
-
-            <div>
+            <div className="content__right-theme">
               <p className="content__title-right">Facturation</p>
               {!clientData.payments && <p>Pas de facture pour ce client</p>}
               {clientData.payments &&
@@ -185,7 +204,7 @@ const ClientPage = ({
                 </IconButton>
               </Tooltip>
             </div>
-            <div>
+            <div className="content__right-theme">
               <p className="content__title-right">Commentaires</p>
 
               <Tooltip title="Ajouter un commentaire" arrow placement="top">

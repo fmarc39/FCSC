@@ -1,5 +1,9 @@
 @import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
 
+a {
+    text-decoration: none;
+    color: black;
+}
 .client-box {
     background-color: rgba(255, 255, 255, 0.9);
 
@@ -20,8 +24,11 @@
     }
     &__commercial-name {
         font-size: $h1;
-        color: $third-color;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.616);
         text-align: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px ;
         padding: 1rem 0;
     }
 
@@ -32,12 +39,23 @@
     justify-content: space-around;
 
     &__title {
-        font-size: $litle;
-        font-weight: bold;
-    }
-    &__title-right {
         font-size: $normal;
         font-weight: bold;
+        background-color: $second-color;
+        padding: .5rem;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+    }
+    &__title-right {
+        font-size: $medium;
+        background-color: $second-color;
+        font-weight: bold;
+        display: inline-block;
+        padding: 1rem;
+        border-radius: 1rem;
+        color: white;
+        margin-bottom: $large;
     }
     &__contact-name {
         text-align: center;
@@ -47,11 +65,41 @@
         width: 75%;
         padding: 1.5rem;
         text-align: center;
+        &-theme {
+            border-radius: 1rem;
+            box-shadow: $box-shadow-l;
+            margin-bottom: 1rem;
+        }
    
     }
     &__left {
         width: 25%;
         padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+     
+    }
+
+    &__content {
+        font-size: $litle;
+        text-decoration: none;
+        text-align: center;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-right: 1rem;
+    }
+
+    &__header-icon {
+        text-align: center;
+        height: 50px;
+    
+     
     }
 
 }
@@ -64,5 +112,7 @@
         padding: 1rem;
         box-shadow: $box-shadow;
         margin-bottom: $litle;
+        size: 2rem;
+    
     }
 }

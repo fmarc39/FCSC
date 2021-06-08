@@ -40,6 +40,8 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
   const handleAddPaymentSubmit = (event) => {
     event.preventDefault();
     handleSubmit(amount, selectedDate, clientId.id);
+    changeAmount('');
+    handleDateChange(new Date());
   };
 
   return (
@@ -78,6 +80,7 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
                   id="standard-basic"
                   label="Montant €"
                   value={amount}
+                  type="number"
                   onChange={handleChangeAmount}
                 />
               </div>

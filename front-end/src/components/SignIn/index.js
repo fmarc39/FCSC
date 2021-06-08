@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router';
+import './styles.scss';
 
 function Copyright() {
   return (
@@ -105,22 +106,24 @@ const SignIn = ({ handleChange, email, password, handleSubmit, isAuth }) => {
               onChange={handleChangeInput}
             />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Valider
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Mot de passe oublié ?
-                </Link>
+            <div className="btn-box">
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Valider
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Mot de passe oublié ?
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+            </div>
           </form>
         </div>
         <Box mt={8}>

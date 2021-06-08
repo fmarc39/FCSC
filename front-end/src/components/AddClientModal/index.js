@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: '10px',
   },
   button: {
     margin: theme.spacing(1),
@@ -141,7 +141,7 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   onChange={handleChangeInput}
                 />
               </div>
-              <div>
+              <div className="city-input">
                 <TextField
                   id="outlined-basic"
                   required="true"
@@ -152,18 +152,20 @@ const AddClientModal = ({ changeInput, isOpen, clodeModal, handleSubmit }) => {
                   onChange={handleChangeInput}
                 />
               </div>
-              <Button
-                variant="contained"
-                required="true"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                onChange={handleChangeInput}
-              >
-                Save
-              </Button>
+              <div className="save-btn">
+                <Button
+                  variant="contained"
+                  required="true"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  className={classes.button}
+                  startIcon={<SaveIcon />}
+                  onChange={handleChangeInput}
+                >
+                  Enregistrer
+                </Button>
+              </div>
             </form>
           </div>
         </Fade>

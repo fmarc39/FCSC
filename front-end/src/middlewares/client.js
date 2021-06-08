@@ -1,6 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import api from '/Users/fmarc/Documents/Code/FCSC/front-end/src/api/api.js';
 import history from '../selectors/history';
+import { authHeader } from 'selectors/auth-header';
+
 import {
   SUBMIT,
   SUBMIT_EDIT_CLIENT,
@@ -50,69 +52,116 @@ export default (store) => (next) => (action) => {
         city,
       } = store.getState().client;
       api
-        .post('/addClient', {
-          firstName,
-          lastName,
-          commercialName,
-          fixPhone,
-          celPhone,
-          email,
-          adress,
-          zipCode,
-          city,
-        })
+        .post(
+          '/addClient',
+          {
+            firstName,
+            lastName,
+            commercialName,
+            fixPhone,
+            celPhone,
+            email,
+            adress,
+            zipCode,
+            city,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
         .then((newClient) => {
           store.dispatch(saveNewClient(newClient.data.client));
           store.dispatch(closeAddClientModal());
         });
       return next(action);
     case FETCH_CLIENTS:
-      api.get('/clients').then((response) => {
-        store.dispatch(saveClients(response.data.clients));
-      });
+      api
+        .get('/clients', {
+          headers: { 'x-access-token': store.getState().user.accessToken },
+        })
+        .then((response) => {
+          store.dispatch(saveClients(response.data.clients));
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
+        });
       return next(action);
     case SUBMIT_ADD_COMMENT:
       const { commentInput } = store.getState().client;
       api
-        .post('/addComment', {
-          commentInput,
-          clientId: action.clientId,
-        })
+        .post(
+          '/addComment',
+          {
+            commentInput,
+            clientId: action.clientId,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
         .then((response) => {
           store.dispatch(saveNewComment(response.data.comment));
           store.dispatch(closeAddCommentModal());
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
         });
       return next(action);
     case SUBMIT_ADD_PAYMENT:
       api
-        .post('/addPayment', {
-          amount: action.amount,
-          date: action.date,
-          clientId: action.clientId,
-        })
+        .post(
+          '/addPayment',
+          {
+            amount: action.amount,
+            date: action.date,
+            clientId: action.clientId,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
         .then((payment) => {
           console.log(payment.data.payments);
           store.dispatch(saveNewPayment(payment.data.payments));
           store.dispatch(closeAddPaymentModal());
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
         });
       return next(action);
     case FETCH_CLIENT_DATA_FROM_DB:
       api
-        .get(`client/${action.clientId}`)
+        .get(`client/${action.clientId}`, {
+          headers: { 'x-access-token': store.getState().user.accessToken },
+        })
         .then((client) => {
           store.dispatch(saveClientDataInState(client.data.client));
         })
         .catch((error) => {
           if (error.response.status === 403) {
             history.push('/');
-            console.log('ok');
           }
         });
       return next(action);
     case DELETE_COMMENT:
-      api.delete(`/deleteComment/${action.commentId}`).then((comment) => {
-        store.dispatch(deleteCommentInState(comment.data.id));
-      });
+      api
+        .delete(`/deleteComment/${action.commentId}`, {
+          headers: { 'x-access-token': store.getState().user.accessToken },
+        })
+        .then((comment) => {
+          store.dispatch(deleteCommentInState(comment.data.id));
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
+        });
       return next(action);
 
     case HANDLE_SUBMIT_SEARCH_CLIENT:
@@ -120,15 +169,23 @@ export default (store) => (next) => (action) => {
       api
         .get('/getFilterList', {
           params: { value: searchInput, filter: searchSelect },
+          headers: { 'x-access-token': store.getState().user.accessToken },
         })
         .then((clients) => {
           console.log(clients);
           store.dispatch(saveClients(clients.data.result));
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
         });
       return next(action);
     case DELETE_CLIENT:
       api
-        .delete(`/deleteClient/${action.clientId}`)
+        .delete(`/deleteClient/${action.clientId}`, {
+          headers: { 'x-access-token': store.getState().user.accessToken },
+        })
         .then((client) => {
           store.dispatch(closeDeleteModal());
           history.push('/home');
@@ -137,20 +194,45 @@ export default (store) => (next) => (action) => {
       return next(action);
     case HANDLE_SUBSRIPTION:
       api
-        .patch('/addSubscription', {
-          value: action.value,
-          clientId: action.clientId,
-        })
+        .patch(
+          '/addSubscription',
+          {
+            value: action.value,
+            clientId: action.clientId,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
         .then((response) => {
           store.dispatch(saveSubscriptionInState(response.data.client[1][0]));
           store.dispatch(closeSuscriptionModal());
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
+        });
       return next(action);
     case DELETE_SUB:
-      api.patch(`/deleteSub/${action.clientId}`).then((client) => {
-        store.dispatch(deleteSubInState());
-      });
+      api
+        .patch(
+          '/deleteSub',
+          {
+            client_id: action.clientId,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
+        .then((client) => {
+          store.dispatch(deleteSubInState());
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
+        });
       return next(action);
     case SUBMIT_EDIT_CLIENT:
       const {
@@ -165,21 +247,32 @@ export default (store) => (next) => (action) => {
         city: editCity,
       } = store.getState().client.clientEditPage;
       api
-        .patch(`/editClient`, {
-          client_id: action.clientId,
-          first_name,
-          last_name,
-          commercial_name,
-          fix_phone,
-          cel_phone,
-          editMail,
-          editAdress,
-          editZipCode,
-          editCity,
-        })
+        .patch(
+          `/editClient`,
+          {
+            client_id: action.clientId,
+            first_name,
+            last_name,
+            commercial_name,
+            fix_phone,
+            cel_phone,
+            editMail,
+            editAdress,
+            editZipCode,
+            editCity,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
         .then((newClient) => {
           store.dispatch(saveClientDataInState(newClient.data.client[1][0]));
           store.dispatch(closeEditClientModal());
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
         });
       return next(action);
 

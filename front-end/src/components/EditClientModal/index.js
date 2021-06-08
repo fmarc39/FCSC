@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: '10px',
   },
   button: {
     margin: theme.spacing(1),
@@ -178,30 +178,32 @@ const EditClientModal = ({
                   onChange={handleChangeInput}
                 />
               </div>
-              <Button
-                variant="contained"
-                required="true"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                onClick={handleFormSubmit}
-              >
-                Valider
-              </Button>
-              <Button
-                variant="contained"
-                required="true"
-                color="primary"
-                size="large"
-                type="submit"
-                className={classes.button}
-                startIcon={<CancelIcon />}
-                onClick={handleCloseModal}
-              >
-                Annuler
-              </Button>
+              <div className="edit-profil__btn-box">
+                <Button
+                  variant="contained"
+                  required="true"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  className={classes.button}
+                  startIcon={<SaveIcon />}
+                  onClick={handleFormSubmit}
+                >
+                  Valider
+                </Button>
+                <Button
+                  variant="contained"
+                  required="true"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  className={classes.button}
+                  startIcon={<CancelIcon />}
+                  onClick={handleCloseModal}
+                >
+                  Annuler
+                </Button>
+              </div>
             </form>
           </div>
         </Fade>

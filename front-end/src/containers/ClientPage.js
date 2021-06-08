@@ -15,6 +15,7 @@ import { deleteSub } from 'actions/Subscription';
 const mapStateToProps = (state) => ({
   clientData: state.client.clientPage,
   comments: state.client.clientPage.comments,
+  isLogin: state.user.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
