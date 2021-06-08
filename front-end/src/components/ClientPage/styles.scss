@@ -55,7 +55,8 @@ a {
         padding: 1rem;
         border-radius: 1rem;
         color: white;
-        margin-bottom: $large;
+        margin-bottom: 2rem;
+        box-shadow: $box-shadow-l;
     }
     &__contact-name {
         text-align: center;
@@ -69,7 +70,9 @@ a {
             border-radius: 1rem;
             box-shadow: $box-shadow-l;
             margin-bottom: 1rem;
+            
         }
+        
    
     }
     &__left {
@@ -77,7 +80,7 @@ a {
         padding: 1.5rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
      
     }
 
@@ -89,6 +92,39 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    &__no-content {
+        font-size: $litle;
+        padding: $normal;
+  
+    }
+
+    &__sub-box {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+        background-color: $main-bis;
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        
+        
+        &__logo {
+            height: 40px;
+          
+        }
+
+        &__contract-name {
+            font-size: $normal;
+            padding: 0;
+            margin: 0;
+        }
+
+        &__contract {
+            font-weight: bold;
+        }
+     
     }
 
     &__icon {
@@ -115,4 +151,9 @@ a {
         size: 2rem;
     
     }
+}
+
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }

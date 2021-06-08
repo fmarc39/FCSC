@@ -1,0 +1,18 @@
+@import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
+
+.modal-title {
+    text-align: center;
+    font-size: $normal;
+    
+}
+
+.modal-payment-box {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: $normal;
+}
+
+.modal-save-btn {
+    text-align: center;
+}

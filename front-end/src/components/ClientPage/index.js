@@ -25,6 +25,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import MapIcon from '@material-ui/icons/Map';
 import ProfilLogo from './user.svg';
+import ContractLogo from './contract.svg';
 
 const ClientPage = ({
   openPaymentModal,
@@ -102,7 +103,11 @@ const ClientPage = ({
             <h2 className="content__contact-name">
               {clientData.first_name} {clientData.last_name}
               <Tooltip title="modifier les informations du client" arrow>
-                <IconButton aria-label="delete" onClick={handleEditBtn}>
+                <IconButton
+                  aria-label="delete"
+                  onClick={handleEditBtn}
+                  style={{ color: '#224059' }}
+                >
                   <EditIcon />
                 </IconButton>
               </Tooltip>
@@ -111,7 +116,10 @@ const ClientPage = ({
             <div className="content__box">
               <p className="content__title">Portable</p>
               <p className="content__content">
-                <PhoneAndroidIcon className="content__icon" />
+                <PhoneAndroidIcon
+                  className="content__icon"
+                  style={{ color: '#224059' }}
+                />
                 <a href="tel:">{clientData.cel_phone}</a>
               </p>
             </div>
@@ -119,7 +127,10 @@ const ClientPage = ({
             <div>
               <p className="content__title">Fixe</p>
               <p className="content__content">
-                <PhoneIcon className="content__icon" />
+                <PhoneIcon
+                  className="content__icon"
+                  style={{ color: '#224059' }}
+                />
                 <a href="tel:">{clientData.fix_phone}</a>
               </p>
             </div>
@@ -127,7 +138,10 @@ const ClientPage = ({
             <div>
               <p className="content__title">Email</p>
               <p className="content__content">
-                <EmailIcon className="content__icon" />
+                <EmailIcon
+                  className="content__icon"
+                  style={{ color: '#224059' }}
+                />
                 <a href={'mailto:san@antonio.net'}>{clientData.email}</a>
               </p>
             </div>
@@ -136,8 +150,11 @@ const ClientPage = ({
               <p className="content__title">Adresse</p>
 
               <p className="content__content">
-                {' '}
-                <LocationOnIcon className="content__icon" /> {clientData.adress}
+                <LocationOnIcon
+                  className="content__icon"
+                  style={{ color: '#224059' }}
+                />{' '}
+                {clientData.adress}
               </p>
             </div>
             <Divider />
@@ -146,7 +163,11 @@ const ClientPage = ({
 
               <p className="content__content">
                 {' '}
-                <MapIcon className="content__icon" /> {clientData.zip_code}
+                <MapIcon
+                  className="content__icon"
+                  style={{ color: '#224059' }}
+                />{' '}
+                {clientData.zip_code}
               </p>
             </div>
             <Divider />
@@ -154,30 +175,49 @@ const ClientPage = ({
 
             <p className="content__content">
               {' '}
-              <LocationCityIcon className="content__icon" />
+              <LocationCityIcon
+                className="content__icon"
+                style={{ color: '#224059' }}
+              />
               {clientData.city}
             </p>
           </div>
           <Divider orientation="vertical" flexItem />
           <div className="content__right">
             <div className="content__right-theme">
-              <p className="content__title-right">Type d'abonnement</p>
+              <p className="content__title-right"> Type d'abonnement</p>
+
               {!clientData.subscription && (
                 <div>
-                  <p>Pas de contrat pour ce client</p>
                   <Tooltip title="ajouter un contrat" arrow>
-                    <IconButton onClick={handleAddSusriptionBtn}>
+                    <IconButton
+                      onClick={handleAddSusriptionBtn}
+                      style={{ color: '#224059' }}
+                    >
                       <AddCircleOutlineOutlinedIcon />
                     </IconButton>
                   </Tooltip>
+                  <p className="content__no-content">
+                    Pas de contrat pour ce client
+                  </p>
                 </div>
               )}
 
               {clientData.subscription && (
-                <div>
-                  <p>{clientData.subscription}</p>
+                <div className="content__sub-box">
+                  <img
+                    src={ContractLogo}
+                    alt="contract-logo"
+                    className="content__sub-box__logo"
+                  />
+                  <p className="content__sub-box__contract-name">
+                    Nom du contrat :{' '}
+                    <span className="content__sub-box__contract">
+                      {clientData.subscription}
+                    </span>
+                  </p>
                   <IconButton aria-label="delete" onClick={handleDeleteSusbBtn}>
-                    <DeleteForeverIcon />
+                    <DeleteForeverIcon style={{ color: '#224059' }} />
                   </IconButton>
                 </div>
               )}

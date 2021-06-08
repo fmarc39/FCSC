@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import { useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import './styles.scss';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    borderRadius: '10px',
+    padding: theme.spacing(2, 2, 2),
   },
 }));
 const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
@@ -60,9 +61,9 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
       >
         <Fade in={isOpen}>
           <div className={classes.paper}>
-            <h3>Ajouter un paiemment</h3>
+            <h3 className="modal-title">Ajouter un paiemment</h3>
             <form onSubmit={handleAddPaymentSubmit}>
-              <div>
+              <div className="modal-payment-box">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     margin="normal"
@@ -84,16 +85,18 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
                   onChange={handleChangeAmount}
                 />
               </div>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                type="submit"
-                className={classes.button}
-                startIcon={<SaveIcon />}
-              >
-                Sauvgarder
-              </Button>
+              <div className="modal-save-btn">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  type="submit"
+                  className={classes.button}
+                  startIcon={<SaveIcon />}
+                >
+                  Sauvgarder
+                </Button>
+              </div>
             </form>
           </div>
         </Fade>

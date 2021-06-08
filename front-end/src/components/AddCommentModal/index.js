@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
+    borderRadius: '10px',
     padding: theme.spacing(2, 4, 3),
   },
 }));
@@ -58,7 +58,7 @@ const AddPaymentModal = ({
       >
         <Fade in={isOpen}>
           <div className={classes.paper}>
-            <h3>Ajouter un commentaire</h3>
+            <h3 className="modal-title">Ajouter un commentaire</h3>
             <form onSubmit={handleSubmitForm}>
               <TextField
                 id="standard-basic"
