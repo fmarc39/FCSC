@@ -64,7 +64,10 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
             <h3 className="modal-title">Ajouter un paiemment</h3>
             <form onSubmit={handleAddPaymentSubmit}>
               <div className="modal-payment-box">
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <MuiPickersUtilsProvider
+                  utils={DateFnsUtils}
+                  className="modal-payment-box__date"
+                >
                   <KeyboardDatePicker
                     margin="normal"
                     value={selectedDate}
@@ -82,6 +85,7 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
                   label="Montant €"
                   value={amount}
                   type="number"
+                  required="true"
                   onChange={handleChangeAmount}
                 />
               </div>

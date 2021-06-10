@@ -6,6 +6,8 @@ export const OPEN_ADD_COMMENT_MODAL = 'OPEN_ADD_COMMENT_MODAL';
 export const CLOSE_ADD_COMMENT_MODAL = 'CLOSE_ADD_COMMENT_MODAL';
 export const FETCH_CLIENT_DATA_FROM_DB = 'FETCH_CLIENT_DATA_FROM_DB';
 export const SAVE_CLIENT_DATA_IN_STATE = 'SAVE_CLIENT_DATA_IN_STATE';
+export const SAVE_EDITED_CLIENT_DATA_IN_STATE =
+  'SAVE_EDITED_CLIENT_DATA_IN_STATE';
 export const DELETE_CLIENT = 'DELETE_CLIENT';
 export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
@@ -75,4 +77,9 @@ export const openSuscribeModal = () => ({
 
 export const closeSuscriptionModal = () => ({
   type: CLOSE_SUSCRIPTION_MODAL,
+});
+
+export const saveEditedClientDataInSate = (payload) => ({
+  type: SAVE_EDITED_CLIENT_DATA_IN_STATE,
+  payload,
 });

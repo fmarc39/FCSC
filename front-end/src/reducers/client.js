@@ -9,12 +9,15 @@ import {
   SAVE_NEW_COMMENT,
   DELETE_COMMENT_IN_STATE,
 } from 'actions/addComment.js';
-import { SAVE_CLIENT_DATA_IN_STATE } from 'actions/utils';
+import {
+  SAVE_CLIENT_DATA_IN_STATE,
+  SAVE_EDITED_CLIENT_DATA_IN_STATE,
+} from 'actions/utils';
 import {
   SAVE_SUBSCRIPTION_IN_STATE,
   DELETE_SUB_IN_STATE,
 } from 'actions/Subscription';
-import { SAVE_NEW_PAYMENT } from 'actions/addPayment';
+import { SAVE_NEW_PAYMENT, DELETE_PAYMENT_IN_STATE } from 'actions/addPayment';
 
 const initialState = {
   firstName: '',
@@ -94,6 +97,7 @@ const reducer = (state = initialState, action = {}) => {
         clientPage: {
           ...state.clientPage,
           subscription: action.payload.subscription,
+          sub_price: action.payload.sub_price,
         },
       };
     case DELETE_SUB_IN_STATE:
@@ -110,6 +114,32 @@ const reducer = (state = initialState, action = {}) => {
         clientPage: {
           ...state.clientPage,
           payments: [...state.clientPage.payments, action.payload],
+        },
+      };
+    case DELETE_PAYMENT_IN_STATE:
+      return {
+        ...state,
+        clientPage: {
+          ...state.clientPage,
+          payments: state.clientPage.payments.filter(
+            (payment) => Number(payment.id) !== Number(action.paymentId)
+          ),
+        },
+      };
+    case SAVE_EDITED_CLIENT_DATA_IN_STATE:
+      return {
+        ...state,
+        clientPage: {
+          ...state.clientPage,
+          first_name: action.payload.first_name,
+          last_name: action.payload.last_name,
+          commercial_name: action.payload.commercial_name,
+          fix_phone: action.payload.fix_phone,
+          cel_phone: action.payload.cel_phone,
+          email: action.payload.email,
+          adress: action.payload.adress,
+          zip_code: action.payload.zip_code,
+          city: action.payload.city,
         },
       };
     default:

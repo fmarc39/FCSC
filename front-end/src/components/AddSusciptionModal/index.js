@@ -4,9 +4,11 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import SaveIcon from '@material-ui/icons/Save';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import { useParams } from 'react-router-dom';
+import './styles.scss';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -30,12 +32,16 @@ const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
 
   const handleAddsubscription = (event) => {
     event.preventDefault();
-    handlesubscription(selectValue, clientId.id);
+    handlesubscription(selectValue, amount, clientId.id);
   };
 
   const [selectValue, setSelectValue] = useState('Diamant');
+  const [amount, selectAmount] = useState('');
   const handleSelectChange = (event) => {
     setSelectValue(event.target.value);
+  };
+  const handleAmountChange = (event) => {
+    selectAmount(event.target.value);
   };
 
   return (
@@ -54,19 +60,31 @@ const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
       >
         <Fade in={isOpen}>
           <div className={classes.paper}>
-            <h3>Ajouter un abonnement</h3>
-            <form onSubmit={handleAddsubscription}>
-              <Select
-                native
-                onChange={handleSelectChange}
-                defaultValue={selectValue}
-                value={selectValue}
-              >
-                <option aria-label="None" value="" />
-                <option value="Diamant">Diamant</option>
-                <option value="Or">Or</option>
-                <option value="Argent">Argent</option>
-              </Select>
+            <h3 className="modal-title">Ajouter un abonnement</h3>
+            <form onSubmit={handleAddsubscription} className="sub-form-box">
+              <div className="sub-form-box__select">
+                <Select
+                  native
+                  onChange={handleSelectChange}
+                  defaultValue={selectValue}
+                  value={selectValue}
+                  required="true"
+                >
+                  <option value="Diamant">Diamant</option>
+                  <option value="Or">Or</option>
+                  <option value="Argent">Argent</option>
+                </Select>
+              </div>
+              <div className="sub-form-box__amount">
+                <TextField
+                  id="standard-basic"
+                  label="Montant total €"
+                  type="number"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  required="true"
+                />
+              </div>
               <Button
                 variant="contained"
                 color="primary"
@@ -74,6 +92,7 @@ const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
                 type="submit"
                 onSubmit={handleAddsubscription}
                 className={classes.button}
+                onChange={handleAmountChange}
                 startIcon={<SaveIcon />}
               >
                 Sauvgarder

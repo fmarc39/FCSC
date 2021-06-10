@@ -26,6 +26,7 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import MapIcon from '@material-ui/icons/Map';
 import ProfilLogo from './user.svg';
 import ContractLogo from './contract.svg';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const ClientPage = ({
   openPaymentModal,
@@ -38,6 +39,7 @@ const ClientPage = ({
   openEditClientModal,
   openAddSuscriptionModal,
   handleDeleteSusb,
+  handleDeletePayment,
 }) => {
   const handleAddPaymentBtn = () => {
     openPaymentModal();
@@ -52,7 +54,6 @@ const ClientPage = ({
   }, []);
 
   const handleDeleteCommentBtn = (event) => {
-    console.log(event.target.closest('button').name);
     deleteComment(event.target.closest('button').name);
   };
   const handleDeleteClientBtn = () => {
@@ -66,6 +67,10 @@ const ClientPage = ({
   };
   const handleDeleteSusbBtn = () => {
     handleDeleteSusb(clientId.id);
+  };
+
+  const handleDeletePaymentBtn = (event) => {
+    handleDeletePayment(event.target.closest('button').name);
   };
 
   return (
@@ -181,6 +186,7 @@ const ClientPage = ({
               />
               {clientData.city}
             </p>
+            <Divider />
           </div>
           <Divider orientation="vertical" flexItem />
           <div className="content__right">
@@ -216,6 +222,12 @@ const ClientPage = ({
                       {clientData.subscription}
                     </span>
                   </p>
+                  <p className="content__sub-box__contract-name">
+                    Prix du contrat :{' '}
+                    <span className="content__sub-box__debt">
+                      {clientData.sub_price} €
+                    </span>
+                  </p>
                   <IconButton aria-label="delete" onClick={handleDeleteSusbBtn}>
                     <DeleteForeverIcon style={{ color: '#224059' }} />
                   </IconButton>
@@ -223,52 +235,69 @@ const ClientPage = ({
               )}
             </div>
 
-            <div className="content__right-theme">
-              <p className="content__title-right">Facturation</p>
+            <div className="content__right-theme pay">
+              <div className="content__header-box">
+                <p className="content__title-right">Facturation</p>
+                <Tooltip title="Ajouter un paiement" arrow>
+                  <IconButton
+                    aria-label="addPayment"
+                    onClick={handleAddPaymentBtn}
+                  >
+                    <CreditCardIcon />
+                  </IconButton>
+                </Tooltip>
+              </div>
               {!clientData.payments && <p>Pas de facture pour ce client</p>}
               {clientData.payments &&
                 clientData.payments.map((payment) => {
                   return (
-                    <div>
-                      <p>{payment.amount} €</p>
-                      <p>{payment.date}</p>
+                    <div className="content__payment-box">
+                      <div className="content__payment-box__delete-btn">
+                        <Tooltip title="Supprimer un paiement" arrow>
+                          <IconButton
+                            aria-label="addPayment"
+                            onClick={handleDeletePaymentBtn}
+                            name={payment.id}
+                          >
+                            <CancelIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </div>
+                      <p className="content__payment-box__amount">
+                        {payment.amount} €
+                      </p>
+                      <p>Payé le {payment.date}</p>
                     </div>
                   );
                 })}
-              <Tooltip title="Ajouter un paiement" arrow>
-                <IconButton
-                  aria-label="addPayment"
-                  onClick={handleAddPaymentBtn}
-                >
-                  <CreditCardIcon />
-                </IconButton>
-              </Tooltip>
             </div>
             <div className="content__right-theme">
-              <p className="content__title-right">Commentaires</p>
-
-              <Tooltip title="Ajouter un commentaire" arrow placement="top">
-                <IconButton
-                  aria-label="addPayment"
-                  onClick={handleAddCommentBtn}
-                >
-                  <ChatIcon />
-                </IconButton>
-              </Tooltip>
-              <div className="comment">
+              <div className="content__header-box">
+                <p className="content__title-right">Commentaires</p>
+                <Tooltip title="Ajouter un commentaire" arrow placement="top">
+                  <IconButton
+                    aria-label="addPayment"
+                    onClick={handleAddCommentBtn}
+                  >
+                    <ChatIcon />
+                  </IconButton>
+                </Tooltip>
+              </div>
+              <div className="comment pay">
                 {comments &&
                   comments.map((comment) => (
                     <div className="comment__box">
-                      <Tooltip title="Supprimer un commentaire">
-                        <IconButton
-                          aria-label="delete"
-                          onClick={handleDeleteCommentBtn}
-                          name={comment.id}
-                        >
-                          <DeleteForeverIcon />
-                        </IconButton>
-                      </Tooltip>
                       <p>{comment.comment}</p>
+                      <div className="comment__box__delete-btn">
+                        <Tooltip title="Supprimer un commentaire">
+                          <IconButton
+                            onClick={handleDeleteCommentBtn}
+                            name={comment.id}
+                          >
+                            <CancelIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </div>
                     </div>
                   ))}
               </div>

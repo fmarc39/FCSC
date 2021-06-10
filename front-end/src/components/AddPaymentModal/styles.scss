@@ -11,6 +11,9 @@
     justify-content: center;
     align-items: baseline;
     margin-bottom: $normal;
+    &__date {
+        margin-right: 1rem;
+    }
 }
 
 .modal-save-btn {

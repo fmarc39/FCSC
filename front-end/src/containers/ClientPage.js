@@ -11,6 +11,7 @@ import {
 
 import { deleteComment } from 'actions/addComment.js';
 import { deleteSub } from 'actions/Subscription';
+import { deletePayment } from 'actions/addPayment';
 
 const mapStateToProps = (state) => ({
   clientData: state.client.clientPage,
@@ -43,6 +44,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleDeleteSusb: (clientId) => {
     dispatch(deleteSub(clientId));
+  },
+  handleDeletePayment: (paymentId) => {
+    dispatch(deletePayment(paymentId));
   },
 });
 

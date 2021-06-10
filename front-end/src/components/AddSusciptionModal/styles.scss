@@ -1,0 +1,14 @@
+@import "/Users/fmarc/Documents/Code/FCSC/front-end/src/__vars.scss";
+
+.sub-form-box {
+    display: flex;
+    flex-direction: column;
+    &__select {
+        margin-bottom: $normal;
+        text-align: center;
+    }
+    &__amount {
+        margin-bottom: $normal;
+        text-align: center;
+    }
+}

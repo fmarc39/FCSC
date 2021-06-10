@@ -4,6 +4,10 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.pay {
+    padding: 1rem;
+}
 .client-box {
     background-color: rgba(255, 255, 255, 0.9);
 
@@ -55,12 +59,41 @@ a {
         padding: 1rem;
         border-radius: 1rem;
         color: white;
-        margin-bottom: 2rem;
+        margin: 1rem 0 2rem 0 ;
+        width: 250px;
+    
         box-shadow: $box-shadow-l;
     }
     &__contact-name {
         text-align: center;
         font-size: $large;
+    }
+    &__header-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    &__payment-box {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        border-radius: 1rem;
+        background-color: $main-bis;
+        padding: .5rem;
+        margin-bottom: 1rem;
+        font-size: $normal;
+        border: 1px solid $main-color;
+        &__amount {
+            font-weight: bold;
+            color: green;
+        }
+        &__delete-btn {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+        }
+       
     }
     &__right {
         width: 75%;
@@ -69,8 +102,7 @@ a {
         &-theme {
             border-radius: 1rem;
             box-shadow: $box-shadow-l;
-            margin-bottom: 1rem;
-            
+            margin-bottom: 1rem;            
         }
         
    
@@ -108,6 +140,7 @@ a {
         background-color: $main-bis;
         border-bottom-right-radius: 1rem;
         border-bottom-left-radius: 1rem;
+        border: 1px solid $main-color;
         
         
         &__logo {
@@ -123,6 +156,10 @@ a {
 
         &__contract {
             font-weight: bold;
+        }
+        &__debt {
+            font-weight: bold;
+          
         }
      
     }
@@ -144,13 +181,23 @@ a {
 
 
     &__box {
-        min-width: 100px;
-        padding: 1rem;
-        box-shadow: $box-shadow;
-        margin-bottom: $litle;
-        size: 2rem;
-    
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        border-radius: 1rem;
+        background-color: $main-bis;
+        padding: .5rem;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        border: 1px solid $main-color;
     }
+ 
+}
+
+.comment__box__delete-btn {
+    position: absolute;
+    top: -17px;
+    right: -17px;
 }
 
 @keyframes mover {

@@ -1,0 +1,12 @@
+.comment-form {
+    &__box {
+        display: flex;
+        flex-direction: column;
+        &__text-field {
+            margin-bottom: 2rem;
+            width: 300px;
+    
+    
+        }
+    }
+}

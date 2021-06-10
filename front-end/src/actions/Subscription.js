@@ -5,9 +5,10 @@ export const SAVE_SUBSCRIPTION_IN_STATE = 'SAVE_SUBSCRIPTION_IN_STATE';
 export const DELETE_SUB = 'DELETE_SUB';
 export const DELETE_SUB_IN_STATE = 'DELETE_SUB_IN_STATE';
 
-export const handlesubscription = (value, clientId) => ({
+export const handlesubscription = (value, amount, clientId) => ({
   type: HANDLE_SUBSRIPTION,
   value,
+  amount,
   clientId,
 });
 

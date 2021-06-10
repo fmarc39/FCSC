@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router-dom';
+import './styles.scss';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -59,13 +60,16 @@ const AddPaymentModal = ({
         <Fade in={isOpen}>
           <div className={classes.paper}>
             <h3 className="modal-title">Ajouter un commentaire</h3>
-            <form onSubmit={handleSubmitForm}>
-              <TextField
-                id="standard-basic"
-                label="Standard"
-                value={value}
-                onChange={handleChangeInput}
-              />
+            <form onSubmit={handleSubmitForm} className="comment-form__box">
+              <div className="comment-form__box__text-field">
+                <TextField
+                  label="votre commentaire"
+                  fullWidth="true"
+                  multiline="true"
+                  value={value}
+                  onChange={handleChangeInput}
+                />
+              </div>
               <Button
                 variant="contained"
                 color="primary"

@@ -15,6 +15,7 @@ import {
   closeAddClientModal,
   FETCH_CLIENT_DATA_FROM_DB,
   saveClientDataInState,
+  saveEditedClientDataInSate,
   closeAddCommentModal,
   DELETE_CLIENT,
   closeDeleteModal,
@@ -28,7 +29,12 @@ import {
   DELETE_COMMENT,
   deleteCommentInState,
 } from 'actions/addComment.js';
-import { SUBMIT_ADD_PAYMENT, saveNewPayment } from 'actions/addPayment.js';
+import {
+  SUBMIT_ADD_PAYMENT,
+  saveNewPayment,
+  DELTE_PAYMENT,
+  deletePaymentInState,
+} from 'actions/addPayment.js';
 
 import {
   HANDLE_SUBSRIPTION,
@@ -163,7 +169,20 @@ export default (store) => (next) => (action) => {
           }
         });
       return next(action);
-
+    case DELTE_PAYMENT:
+      api
+        .delete(`/deletePayment/${action.paymentId}`, {
+          headers: { 'x-access-token': store.getState().user.accessToken },
+        })
+        .then((payment) => {
+          store.dispatch(deletePaymentInState(payment.data.id));
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            history.push('/');
+          }
+        });
+      return next(action);
     case HANDLE_SUBMIT_SEARCH_CLIENT:
       const { searchInput, searchSelect } = store.getState().utils;
       api
@@ -198,6 +217,7 @@ export default (store) => (next) => (action) => {
           '/addSubscription',
           {
             value: action.value,
+            amount: action.amount,
             clientId: action.clientId,
           },
           {
@@ -266,7 +286,9 @@ export default (store) => (next) => (action) => {
           }
         )
         .then((newClient) => {
-          store.dispatch(saveClientDataInState(newClient.data.client[1][0]));
+          store.dispatch(
+            saveEditedClientDataInSate(newClient.data.client[1][0])
+          );
           store.dispatch(closeEditClientModal());
         })
         .catch((error) => {

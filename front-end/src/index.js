@@ -6,18 +6,32 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import history from '../src/selectors/history';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import {
   store,
   persistor,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/store/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#84adcf',
+    },
+    secondary: {
+      main: '#A0C0DA',
+    },
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
         <PersistGate persistor={persistor}>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </PersistGate>
       </Router>
     </Provider>

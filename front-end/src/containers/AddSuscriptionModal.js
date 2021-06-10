@@ -11,8 +11,8 @@ const mapDispatchToProps = (dispatch) => ({
   closeModal: () => {
     dispatch(closeSuscriptionModal());
   },
-  handlesubscription: (value, clientId) => {
-    dispatch(handlesubscription(value, clientId));
+  handlesubscription: (value, amount, clientId) => {
+    dispatch(handlesubscription(value, amount, clientId));
   },
 });
 
