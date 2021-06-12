@@ -74,6 +74,10 @@ a {
         align-items: center;
         
     }
+    &__content-debt {
+        font-weight: bold;
+        color:rgb(255, 101, 101)
+    }
     &__payment-box {
         display: flex;
         position: relative;
@@ -102,9 +106,40 @@ a {
         &-theme {
             border-radius: 1rem;
             box-shadow: $box-shadow-l;
-            margin-bottom: 1rem;            
+            margin-bottom: 1rem;
+            position: relative;         
         }
+        &__add-sub-btn {
+            background-color: $main-bis;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            &:hover {
+                transform: scale(1.1);
+                
+            }
+            
+        }
+
+        &-debt {
+            font-size:1.2rem;
+            background-color: $main-bis;
+            border: 1px solid $main-color;
+            padding: .5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+      
+        }
+
+        &__add-sub-img {
+            height: 40px;
+            cursor: pointer;
         
+        }
+
    
     }
     &__left {

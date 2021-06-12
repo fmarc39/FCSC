@@ -12,12 +12,17 @@ import {
 import {
   SAVE_CLIENT_DATA_IN_STATE,
   SAVE_EDITED_CLIENT_DATA_IN_STATE,
+  GET_FILTER_LIST,
 } from 'actions/utils';
 import {
   SAVE_SUBSCRIPTION_IN_STATE,
   DELETE_SUB_IN_STATE,
 } from 'actions/Subscription';
-import { SAVE_NEW_PAYMENT, DELETE_PAYMENT_IN_STATE } from 'actions/addPayment';
+import {
+  SAVE_NEW_PAYMENT,
+  DELETE_PAYMENT_IN_STATE,
+  SAVE_UPDATED_DEBT_IN_STATE,
+} from 'actions/addPayment';
 
 const initialState = {
   firstName: '',
@@ -98,6 +103,7 @@ const reducer = (state = initialState, action = {}) => {
           ...state.clientPage,
           subscription: action.payload.subscription,
           sub_price: action.payload.sub_price,
+          debt: action.payload.sub_price,
         },
       };
     case DELETE_SUB_IN_STATE:
@@ -106,6 +112,8 @@ const reducer = (state = initialState, action = {}) => {
         clientPage: {
           ...state.clientPage,
           subscription: null,
+          debt: null,
+          sub_price: null,
         },
       };
     case SAVE_NEW_PAYMENT:
@@ -126,6 +134,13 @@ const reducer = (state = initialState, action = {}) => {
           ),
         },
       };
+    case SAVE_UPDATED_DEBT_IN_STATE:
+      return {
+        ...state,
+        clientPage: {
+          ...state.clientPage,
+        },
+      };
     case SAVE_EDITED_CLIENT_DATA_IN_STATE:
       return {
         ...state,
@@ -141,6 +156,15 @@ const reducer = (state = initialState, action = {}) => {
           zip_code: action.payload.zip_code,
           city: action.payload.city,
         },
+      };
+    case GET_FILTER_LIST:
+      return {
+        ...state,
+        clientList: state.clientList.filter((client) => {
+          if (client.debt !== null) {
+            return client;
+          }
+        }),
       };
     default:
       return state;

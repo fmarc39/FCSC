@@ -27,7 +27,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 2, 2),
   },
 }));
-const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
+const AddPaymentModal = ({
+  isOpen,
+  closeModal,
+  handleSubmit,
+  debt,
+  handleNewDebt,
+}) => {
   const clientId = useParams();
   const classes = useStyles();
   const handleClose = () => {
@@ -39,8 +45,11 @@ const AddPaymentModal = ({ isOpen, closeModal, handleSubmit }) => {
     changeAmount(event.target.value);
   };
   const handleAddPaymentSubmit = (event) => {
+    const newDebt = Number(debt) - Number(amount);
+    console.log(debt, amount);
     event.preventDefault();
     handleSubmit(amount, selectedDate, clientId.id);
+    handleNewDebt(newDebt, clientId.id);
     changeAmount('');
     handleDateChange(new Date());
   };

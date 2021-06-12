@@ -34,6 +34,8 @@ import {
   saveNewPayment,
   DELTE_PAYMENT,
   deletePaymentInState,
+  UPDATE_DEBT,
+  saveUpdatedDebtInSate,
 } from 'actions/addPayment.js';
 
 import {
@@ -125,6 +127,7 @@ export default (store) => (next) => (action) => {
             amount: action.amount,
             date: action.date,
             clientId: action.clientId,
+            debt: action.newDebt,
           },
           {
             headers: { 'x-access-token': store.getState().user.accessToken },
@@ -153,6 +156,24 @@ export default (store) => (next) => (action) => {
           if (error.response.status === 403) {
             history.push('/');
           }
+        });
+      return next(action);
+    case UPDATE_DEBT:
+      api
+        .patch(
+          '/updateDebt',
+          {
+            debt: action.newDebt,
+            clientId: action.clientId,
+          },
+          {
+            headers: { 'x-access-token': store.getState().user.accessToken },
+          }
+        )
+        .then((apiResponse) => {
+          store.dispatch(
+            saveUpdatedDebtInSate(apiResponse.data.debt[1][0].debt)
+          );
         });
       return next(action);
     case DELETE_COMMENT:

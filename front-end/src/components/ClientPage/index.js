@@ -27,6 +27,9 @@ import MapIcon from '@material-ui/icons/Map';
 import ProfilLogo from './user.svg';
 import ContractLogo from './contract.svg';
 import CancelIcon from '@material-ui/icons/Cancel';
+import plusBtn from './plus.png';
+import AddPayment from './add.png';
+import AddComment from './comment.png';
 
 const ClientPage = ({
   openPaymentModal,
@@ -40,6 +43,8 @@ const ClientPage = ({
   openAddSuscriptionModal,
   handleDeleteSusb,
   handleDeletePayment,
+  debt,
+  handleUpdateDebt,
 }) => {
   const handleAddPaymentBtn = () => {
     openPaymentModal();
@@ -70,7 +75,11 @@ const ClientPage = ({
   };
 
   const handleDeletePaymentBtn = (event) => {
+    const newDebt =
+      Number(debt) +
+      Number(event.target.closest('button').getAttribute('data-value'));
     handleDeletePayment(event.target.closest('button').name);
+    handleUpdateDebt(newDebt, clientId.id);
   };
 
   return (
@@ -196,12 +205,16 @@ const ClientPage = ({
               {!clientData.subscription && (
                 <div>
                   <Tooltip title="ajouter un contrat" arrow>
-                    <IconButton
+                    <button
                       onClick={handleAddSusriptionBtn}
-                      style={{ color: '#224059' }}
+                      className="content__right__add-sub-btn"
                     >
-                      <AddCircleOutlineOutlinedIcon />
-                    </IconButton>
+                      <img
+                        src={plusBtn}
+                        alt="add-sub-icon"
+                        className="content__right__add-sub-img"
+                      />
+                    </button>
                   </Tooltip>
                   <p className="content__no-content">
                     Pas de contrat pour ce client
@@ -237,15 +250,30 @@ const ClientPage = ({
 
             <div className="content__right-theme pay">
               <div className="content__header-box">
-                <p className="content__title-right">Facturation</p>
                 <Tooltip title="Ajouter un paiement" arrow>
-                  <IconButton
-                    aria-label="addPayment"
+                  <button
                     onClick={handleAddPaymentBtn}
+                    className="content__right__add-sub-btn"
                   >
-                    <CreditCardIcon />
-                  </IconButton>
+                    <img
+                      src={AddPayment}
+                      alt="add-sub-icon"
+                      className="content__right__add-sub-img"
+                    />
+                  </button>
                 </Tooltip>
+                <p className="content__title-right">Facturation</p>
+                {clientData.debt && (
+                  <div className="content__right-debt">
+                    <p>
+                      Reste à payer:{' '}
+                      <span className="content__content-debt">
+                        {clientData.debt}{' '}
+                      </span>{' '}
+                      €
+                    </p>
+                  </div>
+                )}
               </div>
               {!clientData.payments && <p>Pas de facture pour ce client</p>}
               {clientData.payments &&
@@ -258,6 +286,7 @@ const ClientPage = ({
                             aria-label="addPayment"
                             onClick={handleDeletePaymentBtn}
                             name={payment.id}
+                            data-value={payment.amount}
                           >
                             <CancelIcon />
                           </IconButton>
@@ -274,13 +303,17 @@ const ClientPage = ({
             <div className="content__right-theme">
               <div className="content__header-box">
                 <p className="content__title-right">Commentaires</p>
-                <Tooltip title="Ajouter un commentaire" arrow placement="top">
-                  <IconButton
-                    aria-label="addPayment"
+                <Tooltip title="ajouter un contrat" arrow>
+                  <button
                     onClick={handleAddCommentBtn}
+                    className="content__right__add-sub-btn"
                   >
-                    <ChatIcon />
-                  </IconButton>
+                    <img
+                      src={AddComment}
+                      alt="add-sub-icon"
+                      className="content__right__add-sub-img"
+                    />
+                  </button>
                 </Tooltip>
               </div>
               <div className="comment pay">

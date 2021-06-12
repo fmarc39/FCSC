@@ -3,11 +3,13 @@ import AddPaymentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/comp
 import {
   changeInputAddPayment,
   submitAddPayment,
-} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addPayment.js';
+  updateDebt,
+} from 'actions/addPayment.js';
 import { closeAddPaymentModal } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils';
 
 const mapStateToProps = (state) => ({
   isOpen: state.utils.addPaymentModal,
+  debt: state.client.clientPage.debt,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,6 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleSubmit: (amount, date, clientId) => {
     dispatch(submitAddPayment(amount, date, clientId));
+  },
+  handleNewDebt: (newDebt, clientId) => {
+    dispatch(updateDebt(newDebt, clientId));
   },
 });
 

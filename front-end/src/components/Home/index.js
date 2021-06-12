@@ -29,14 +29,12 @@ const Home = ({
     handleSubmit();
   };
   useEffect(() => {
-    //defining the async function
     async function fetchFromAPI() {
       try {
         await fetchClients();
       } catch {}
     }
 
-    //executing the async function:
     if (isAuth) fetchFromAPI();
   }, [isAuth]);
 

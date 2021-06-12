@@ -14,12 +14,19 @@
         justify-content: center;
         background-color: white;
         width: 350px;
+
         padding: 1rem;
         border-radius: 10px;
         box-shadow: $box-shadow;
     }
     &__add-btn {
         margin-bottom: $normal;
+    }
+
+    &__check-box {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 30px;
     }
 
 }

@@ -11,12 +11,13 @@ import {
 
 import { deleteComment } from 'actions/addComment.js';
 import { deleteSub } from 'actions/Subscription';
-import { deletePayment } from 'actions/addPayment';
+import { deletePayment, updateDebt } from 'actions/addPayment';
 
 const mapStateToProps = (state) => ({
   clientData: state.client.clientPage,
   comments: state.client.clientPage.comments,
   isLogin: state.user.isAuth,
+  debt: state.client.clientPage.debt,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,6 +48,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleDeletePayment: (paymentId) => {
     dispatch(deletePayment(paymentId));
+  },
+  handleUpdateDebt: (newDebt, clientId) => {
+    dispatch(updateDebt(newDebt, clientId));
   },
 });
 

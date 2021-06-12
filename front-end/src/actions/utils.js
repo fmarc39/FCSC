@@ -15,6 +15,7 @@ export const CLOSE_EDIT_CLIENT_MODAL = 'CLOSE_EDIT_CLIENT_MODAL';
 export const OPEN_EDIT_CLIENT_MODAL = 'OPEN_EDIT_CLIENT_MODAL';
 export const OPEN_SUSCRIBE_MODAL = 'OPEN_SUSCRIBE_MODAL';
 export const CLOSE_SUSCRIPTION_MODAL = 'CLOSE_SUSCRIPTION_MODAL';
+export const GET_FILTER_LIST = 'GET_FILTER_LIST';
 
 export const openAddClientModal = () => ({
   type: OPEN_ADD_CLIENT_MODAL,
@@ -82,4 +83,8 @@ export const closeSuscriptionModal = () => ({
 export const saveEditedClientDataInSate = (payload) => ({
   type: SAVE_EDITED_CLIENT_DATA_IN_STATE,
   payload,
+});
+
+export const GetFilterList = () => ({
+  type: GET_FILTER_LIST,
 });

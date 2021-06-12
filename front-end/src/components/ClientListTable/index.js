@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,6 +9,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from 'react-router-dom';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import './styles.scss';
 
 const columns = [
   { id: 'commercial_name', label: 'Nom commercial', minWidth: 170 },
@@ -29,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ClientTable = ({ clientData }) => {
+const ClientTable = ({ clientData, handleCheckFilter }) => {
   const classes = useStyles();
 
   const rows = clientData.map((client) => {
@@ -52,71 +57,94 @@ const ClientTable = ({ clientData }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const [isChecked, setIsChecked] = useState(false);
 
+  const handleCheckBoxBtn = () => {
+    setIsChecked(!isChecked);
+    if (!isChecked) {
+      console.log('ok');
+      handleCheckFilter();
+    }
+  };
   return (
     <>
       {clientData.length !== 0 && (
-        <Paper className={classes.root}>
-          <TableContainer className={classes.container}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      <div className="header-title"> {column.label}</div>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        component={Link}
-                        style={{ textDecoration: 'none' }}
-                        to={`/client/${row.id}`}
-                        name={row.id}
-                        className="tableRow"
-                        tabIndex={-1}
-                        key={row.id}
+        <div className="client-list">
+          <div className="check-box-filter">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                  checkedIcon={<CheckBoxIcon fontSize="small" />}
+                  checked={isChecked}
+                  onChange={handleCheckBoxBtn}
+                />
+              }
+              label="Client avec une dette"
+            />
+          </div>
+          <Paper className={classes.root}>
+            <TableContainer className={classes.container}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
                       >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              <div className="header-body">
-                                {column.format && typeof value === 'number'
-                                  ? column.format(value)
-                                  : value}
-                              </div>
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 50]}
-            labelRowsPerPage="Résultats par page"
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        </Paper>
+                        <div className="header-title"> {column.label}</div>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          component={Link}
+                          style={{ textDecoration: 'none' }}
+                          to={`/client/${row.id}`}
+                          name={row.id}
+                          className="tableRow"
+                          tabIndex={-1}
+                          key={row.id}
+                        >
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                <div className="header-body">
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
+                                </div>
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 50]}
+              labelRowsPerPage="Résultats par page"
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          </Paper>
+        </div>
       )}
     </>
   );
