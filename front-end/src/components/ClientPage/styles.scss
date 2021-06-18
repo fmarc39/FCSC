@@ -124,6 +124,21 @@ a {
             
         }
 
+        &__add-invoice-btn {
+            background-color: $main-bis;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+            position: absolute;
+            top: 15px;
+            right: 100px;
+            &:hover {
+                transform: scale(1.1);
+                
+            }
+
+        }
+
         &-debt {
             font-size:1.2rem;
             background-color: $main-bis;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ClientListTable from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/ClientListTable/index.js';
-import {} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
+import { fetchClients } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
 import { GetFilterList } from 'actions/utils';
 
 const mapStateToProps = (state) => ({
@@ -10,6 +10,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleCheckFilter: () => {
     dispatch(GetFilterList());
+  },
+  fetchClients: () => {
+    dispatch(fetchClients());
   },
 });
 

@@ -63,6 +63,7 @@ const Home = ({
             <MenuItem value="commercial_name">Entreprise</MenuItem>
             <MenuItem value="cel_phone">Portable</MenuItem>
             <MenuItem value="last_name">Nom de famille</MenuItem>
+            <MenuItem value="subscription">Contrat</MenuItem>
           </Select>
           <IconButton type="submit">
             <DoneIcon />

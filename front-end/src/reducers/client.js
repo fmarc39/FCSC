@@ -139,6 +139,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         clientPage: {
           ...state.clientPage,
+          debt: action.newDebt,
         },
       };
     case SAVE_EDITED_CLIENT_DATA_IN_STATE:

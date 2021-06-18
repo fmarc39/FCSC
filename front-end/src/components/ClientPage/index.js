@@ -8,9 +8,6 @@ import './styles.scss';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import ChatIcon from '@material-ui/icons/Chat';
 import AddPaymentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddPaymentModal.js';
 import AddCommentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddCommentModal.js';
 import DeleteClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/DeleteClientModal.js';
@@ -30,6 +27,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import plusBtn from './plus.png';
 import AddPayment from './add.png';
 import AddComment from './comment.png';
+import Pdf from './pdf.svg';
 
 const ClientPage = ({
   openPaymentModal,
@@ -262,6 +260,18 @@ const ClientPage = ({
                     />
                   </button>
                 </Tooltip>
+                <Tooltip title="Editer une facture" arrow>
+                  <button
+                    onClick={handleAddPaymentBtn}
+                    className="content__right__add-invoice-btn"
+                  >
+                    <img
+                      src={Pdf}
+                      alt="add-sub-icon"
+                      className="content__right__add-sub-img"
+                    />
+                  </button>
+                </Tooltip>
                 <p className="content__title-right">Facturation</p>
                 {clientData.debt && (
                   <div className="content__right-debt">
@@ -303,7 +313,7 @@ const ClientPage = ({
             <div className="content__right-theme">
               <div className="content__header-box">
                 <p className="content__title-right">Commentaires</p>
-                <Tooltip title="ajouter un contrat" arrow>
+                <Tooltip title="ajouter un commentaire" arrow>
                   <button
                     onClick={handleAddCommentBtn}
                     className="content__right__add-sub-btn"
