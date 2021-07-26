@@ -1,7 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import api from '/Users/fmarc/Documents/Code/FCSC/front-end/src/api/api.js';
 import history from '../selectors/history';
-import { authHeader } from 'selectors/auth-header';
 
 import {
   SUBMIT,
@@ -91,9 +90,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(saveClients(response.data.clients));
         })
         .catch((error) => {
-          if (error.response.status === 403) {
-            history.push('/');
-          }
+          history.push('/');
         });
       return next(action);
     case SUBMIT_ADD_COMMENT:
