@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import Home from 'components/Home';
-import { openAddClientModal } from 'actions/utils.js';
+import Home from '../components/Home';
+import { openAddClientModal } from '../actions/utils.js';
 import {
   fetchClients,
   handleSearchInputChange,
   handleSubmitSearchClient,
-} from 'actions/addClient.js';
+} from '../actions/addClient.js';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,

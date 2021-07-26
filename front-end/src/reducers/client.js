@@ -3,26 +3,26 @@ import {
   SAVE_CLIENTS,
   SAVE_NEW_CLIENT,
   CHANGE_EDIT_INPUT,
-} from 'actions/addClient.js';
+} from '../actions/addClient.js';
 import {
   CHANGE_INPUT_ADD_COMMENT,
   SAVE_NEW_COMMENT,
   DELETE_COMMENT_IN_STATE,
-} from 'actions/addComment.js';
+} from '../actions/addComment.js';
 import {
   SAVE_CLIENT_DATA_IN_STATE,
   SAVE_EDITED_CLIENT_DATA_IN_STATE,
   GET_FILTER_LIST,
-} from 'actions/utils';
+} from '../actions/utils';
 import {
   SAVE_SUBSCRIPTION_IN_STATE,
   DELETE_SUB_IN_STATE,
-} from 'actions/Subscription';
+} from '../actions/Subscription';
 import {
   SAVE_NEW_PAYMENT,
   DELETE_PAYMENT_IN_STATE,
   SAVE_UPDATED_DEBT_IN_STATE,
-} from 'actions/addPayment';
+} from '../actions/addPayment';
 
 const initialState = {
   firstName: '',

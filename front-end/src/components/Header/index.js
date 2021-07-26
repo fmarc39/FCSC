@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from 'components/Header/logo-fcsc.jpeg';
+import logo from './logo-fcsc.jpeg';
 import Button from '@material-ui/core/Button';
 import { useHistory, Link } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';

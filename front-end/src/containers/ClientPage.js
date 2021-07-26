@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/ClientPage/index.js';
+import ClientPage from '../components/ClientPage';
 import {
   openAddPaymentModal,
   openAddCommentModal,
@@ -7,11 +7,11 @@ import {
   openDeleteModal,
   openEditModal,
   openSuscribeModal,
-} from 'actions/utils';
+} from '../actions/utils';
 
-import { deleteComment } from 'actions/addComment.js';
-import { deleteSub } from 'actions/Subscription';
-import { deletePayment, updateDebt } from 'actions/addPayment';
+import { deleteComment } from '../actions/addComment.js';
+import { deleteSub } from '../actions/Subscription';
+import { deletePayment, updateDebt } from '../actions/addPayment';
 
 const mapStateToProps = (state) => ({
   clientData: state.client.clientPage,

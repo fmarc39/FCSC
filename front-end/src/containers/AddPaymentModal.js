@@ -4,7 +4,7 @@ import {
   changeInputAddPayment,
   submitAddPayment,
   updateDebt,
-} from 'actions/addPayment.js';
+} from '../actions/addPayment.js';
 import { closeAddPaymentModal } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils';
 
 const mapStateToProps = (state) => ({
