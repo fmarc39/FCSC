@@ -11,6 +11,9 @@ import {
   CLOSE_EDIT_CLIENT_MODAL,
   OPEN_EDIT_CLIENT_MODAL,
   OPEN_SUSCRIBE_MODAL,
+  OPEN_SNACK_PWD,
+  OPEN_SNACK_MAIL,
+  CLOSE_SNACK,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils.js';
 
 import { HANDLE_SEARCH_INPUT_CHANGE } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addClient.js';
@@ -24,6 +27,8 @@ const initialState = {
   editClientModal: false,
   searchInput: '',
   searchSelect: 'commercial_name',
+  snackMail: false,
+  snackPwd: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -92,6 +97,22 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         addSuscriptionModal: false,
+      };
+    case OPEN_SNACK_MAIL:
+      return {
+        ...state,
+        snackMail: true,
+      };
+    case OPEN_SNACK_PWD:
+      return {
+        ...state,
+        snackPwd: true,
+      };
+    case CLOSE_SNACK:
+      return {
+        ...state,
+        snackPwd: false,
+        snackMail: false,
       };
     default:
       return state;

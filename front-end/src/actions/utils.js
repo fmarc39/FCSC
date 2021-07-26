@@ -16,6 +16,9 @@ export const OPEN_EDIT_CLIENT_MODAL = 'OPEN_EDIT_CLIENT_MODAL';
 export const OPEN_SUSCRIBE_MODAL = 'OPEN_SUSCRIBE_MODAL';
 export const CLOSE_SUSCRIPTION_MODAL = 'CLOSE_SUSCRIPTION_MODAL';
 export const GET_FILTER_LIST = 'GET_FILTER_LIST';
+export const OPEN_SNACK_MAIL = 'OPEN_SNACK_MAIL';
+export const OPEN_SNACK_PWD = 'OPEN_SNACK_PWD';
+export const CLOSE_SNACK = 'CLOSE_SNACK';
 
 export const openAddClientModal = () => ({
   type: OPEN_ADD_CLIENT_MODAL,
@@ -87,4 +90,16 @@ export const saveEditedClientDataInSate = (payload) => ({
 
 export const GetFilterList = () => ({
   type: GET_FILTER_LIST,
+});
+
+export const OpenSnackMail = () => ({
+  type: OPEN_SNACK_MAIL,
+});
+
+export const OpenSnackPwd = () => ({
+  type: OPEN_SNACK_PWD,
+});
+
+export const closeSnack = () => ({
+  type: CLOSE_SNACK,
 });

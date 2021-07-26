@@ -260,7 +260,7 @@ const ClientPage = ({
                     />
                   </button>
                 </Tooltip>
-                <Tooltip title="Editer une facture" arrow>
+                {/* <Tooltip title="Editer une facture" arrow>
                   <button
                     onClick={handleAddPaymentBtn}
                     className="content__right__add-invoice-btn"
@@ -271,7 +271,7 @@ const ClientPage = ({
                       className="content__right__add-sub-img"
                     />
                   </button>
-                </Tooltip>
+                </Tooltip> */}
                 <p className="content__title-right">Facturation</p>
                 {clientData.debt && (
                   <div className="content__right-debt">
