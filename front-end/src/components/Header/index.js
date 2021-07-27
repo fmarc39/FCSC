@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from 'components/Header/logo-fcsc.jpeg';
-import Button from '@material-ui/core/Button';
+import logo from './logo-fcsc.jpeg';
 import { useHistory, Link } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import './styles.scss';
+import { IconButton } from '@material-ui/core';
 
 const Header = ({ handleLogout, isAuth }) => {
   const handleLogoutBtn = (event) => {
@@ -19,15 +19,16 @@ const Header = ({ handleLogout, isAuth }) => {
       <h1 className="header__title">Gestion sponsors FCSC</h1>
       <div>
         {isAuth && (
-          <Button
+          <IconButton
+            style={{ backgroundColor: '#A0C0DA', color: 'white' }}
             variant="contained"
             onClick={handleLogoutBtn}
             color="primary"
             size="large"
             startIcon={<ExitToAppIcon />}
           >
-            Se déconnecter
-          </Button>
+            <ExitToAppIcon />
+          </IconButton>
         )}
       </div>
     </header>

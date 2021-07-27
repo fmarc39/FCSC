@@ -13,6 +13,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router';
 import './styles.scss';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Copyright() {
   return (
@@ -52,11 +58,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = ({ handleChange, email, password, handleSubmit, isAuth }) => {
+const SignIn = ({
+  handleChange,
+  email,
+  password,
+  handleSubmit,
+  isAuth,
+  isSnackMailOpen,
+  isSnackPwdOpen,
+  handleCloseSanck,
+}) => {
   const classes = useStyles();
 
   const handleChangeInput = (event) => {
     handleChange(event.target.name, event.target.value);
+  };
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    handleCloseSanck();
   };
 
   const handleFormSubmit = (event) => {
@@ -117,14 +139,32 @@ const SignIn = ({ handleChange, email, password, handleSubmit, isAuth }) => {
                 Valider
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Mot de passe oublié ?
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
             </div>
           </form>
+          <Snackbar
+            open={isSnackPwdOpen}
+            autoHideDuration={6000}
+            onClose={handleCloseSnack}
+          >
+            <Alert onClose={handleCloseSnack} severity="error">
+              Mauvais mot de passe
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            open={isSnackMailOpen}
+            autoHideDuration={6000}
+            onClose={handleCloseSnack}
+          >
+            <Alert onClose={handleCloseSnack} severity="error">
+              Email inconnu
+            </Alert>
+          </Snackbar>
         </div>
         <Box mt={8}>
           <Copyright />

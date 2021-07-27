@@ -4,9 +4,12 @@ import {
   handleChange,
   handleSignin,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/user.js';
+import { closeSnack } from '../actions/utils';
 
 const mapStateToProps = (state) => ({
   isAuth: state.user.isAuth,
+  isSnackMailOpen: state.utils.snackMail,
+  isSnackPwdOpen: state.utils.snackPwd,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,6 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleSubmit: () => {
     dispatch(handleSignin());
+  },
+  handleCloseSanck: () => {
+    dispatch(closeSnack());
   },
 });
 

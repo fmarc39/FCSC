@@ -9,7 +9,7 @@ import {
   saveClients,
   saveNewClient,
   HANDLE_SUBMIT_SEARCH_CLIENT,
-} from 'actions/addClient';
+} from '../actions/addClient';
 import {
   closeAddClientModal,
   FETCH_CLIENT_DATA_FROM_DB,
@@ -21,13 +21,13 @@ import {
   closeEditClientModal,
   closeSuscriptionModal,
   closeAddPaymentModal,
-} from 'actions/utils.js';
+} from '../actions/utils.js';
 import {
   SUBMIT_ADD_COMMENT,
   saveNewComment,
   DELETE_COMMENT,
   deleteCommentInState,
-} from 'actions/addComment.js';
+} from '../actions/addComment.js';
 import {
   SUBMIT_ADD_PAYMENT,
   saveNewPayment,
@@ -35,14 +35,14 @@ import {
   deletePaymentInState,
   UPDATE_DEBT,
   saveUpdatedDebtInSate,
-} from 'actions/addPayment.js';
+} from '../actions/addPayment.js';
 
 import {
   HANDLE_SUBSRIPTION,
   saveSubscriptionInState,
   DELETE_SUB,
   deleteSubInState,
-} from 'actions/Subscription.js';
+} from '../actions/Subscription.js';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {

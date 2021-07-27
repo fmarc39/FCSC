@@ -5,6 +5,8 @@ import {
   IsSignIn,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/user.js';
 
+import { OpenSnackMail, OpenSnackPwd } from '../actions/utils';
+
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case HANDLE_SIGNIN:
@@ -19,6 +21,13 @@ export default (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
+          if (error.response.data.code === 'mail') {
+            store.dispatch(OpenSnackMail());
+          }
+          if (error.response.data.code === 'password') {
+            store.dispatch(OpenSnackPwd());
+          }
+
           console.log(error);
         });
       return next(action);

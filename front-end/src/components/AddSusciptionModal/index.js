@@ -70,9 +70,11 @@ const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
                   value={selectValue}
                   required="true"
                 >
-                  <option value="Diamant">Diamant</option>
-                  <option value="Or">Or</option>
-                  <option value="Argent">Argent</option>
+                  <option value="Transformation">Transformation</option>
+                  <option value="Drop">Drop</option>
+                  <option value="Pénalité">Pénalité</option>
+                  <option value="Essai">Essai</option>
+                  <option value="Bonus">Bonus</option>
                 </Select>
               </div>
               <div className="sub-form-box__amount">
