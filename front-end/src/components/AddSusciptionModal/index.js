@@ -35,7 +35,7 @@ const AddPaymentModal = ({ isOpen, closeModal, handlesubscription }) => {
     handlesubscription(selectValue, amount, clientId.id);
   };
 
-  const [selectValue, setSelectValue] = useState('Diamant');
+  const [selectValue, setSelectValue] = useState('Transformation');
   const [amount, selectAmount] = useState('');
   const handleSelectChange = (event) => {
     setSelectValue(event.target.value);
