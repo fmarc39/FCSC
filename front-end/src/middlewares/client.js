@@ -90,6 +90,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(saveClients(response.data.clients));
         })
         .catch((error) => {
+          console.log(error);
           history.push('/');
         });
       return next(action);

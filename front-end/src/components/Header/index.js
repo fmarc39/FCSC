@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo-fcsc.jpeg';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import './styles.scss';
 import { IconButton } from '@material-ui/core';
