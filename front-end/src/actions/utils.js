@@ -19,6 +19,7 @@ export const GET_FILTER_LIST = 'GET_FILTER_LIST';
 export const OPEN_SNACK_MAIL = 'OPEN_SNACK_MAIL';
 export const OPEN_SNACK_PWD = 'OPEN_SNACK_PWD';
 export const CLOSE_SNACK = 'CLOSE_SNACK';
+export const ERROR_SERVER = 'ERROR_SERVER';
 
 export const openAddClientModal = () => ({
   type: OPEN_ADD_CLIENT_MODAL,
@@ -102,4 +103,8 @@ export const OpenSnackPwd = () => ({
 
 export const closeSnack = () => ({
   type: CLOSE_SNACK,
+});
+
+export const errorServer = () => ({
+  type: ERROR_SERVER,
 });

@@ -3,6 +3,7 @@ import {
   IS_SIGNIN,
   LOGOUT,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/user.js';
+import { ERROR_SERVER } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils.js';
 import history from '../selectors/history';
 
 const initialState = {
@@ -36,6 +37,11 @@ const reducer = (state = initialState, action = {}) => {
         accessToken: '',
       };
 
+    case ERROR_SERVER:
+      return {
+        ...state,
+        isAuth: false,
+      };
     default:
       return state;
   }

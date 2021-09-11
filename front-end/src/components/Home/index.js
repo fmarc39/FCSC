@@ -29,14 +29,8 @@ const Home = ({
     handleSubmit();
   };
   useEffect(() => {
-    async function fetchFromAPI() {
-      try {
-        await fetchClients();
-      } catch {}
-    }
-
-    if (isAuth) fetchFromAPI();
-  }, [isAuth]);
+    fetchClients();
+  }, []);
 
   return (
     <div>

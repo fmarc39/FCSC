@@ -21,6 +21,7 @@ import {
   closeEditClientModal,
   closeSuscriptionModal,
   closeAddPaymentModal,
+  errorServer,
 } from '../actions/utils.js';
 import {
   SUBMIT_ADD_COMMENT,
@@ -79,6 +80,11 @@ export default (store) => (next) => (action) => {
         .then((newClient) => {
           store.dispatch(saveNewClient(newClient.data.client));
           store.dispatch(closeAddClientModal());
+        })
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(errorServer());
+          history.push('/');
         });
       return next(action);
     case FETCH_CLIENTS:
@@ -91,6 +97,7 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(errorServer());
           history.push('/');
         });
       return next(action);
@@ -113,8 +120,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case SUBMIT_ADD_PAYMENT:
@@ -138,8 +147,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case FETCH_CLIENT_DATA_FROM_DB:
@@ -152,8 +163,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case UPDATE_DEBT:
@@ -184,8 +197,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case DELTE_PAYMENT:
@@ -198,8 +213,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case HANDLE_SUBMIT_SEARCH_CLIENT:
@@ -215,8 +232,10 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           if (error.response.status === 403) {
+            store.dispatch(errorServer());
             history.push('/');
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case DELETE_CLIENT:
@@ -224,11 +243,15 @@ export default (store) => (next) => (action) => {
         .delete(`/deleteClient/${action.clientId}`, {
           headers: { 'x-access-token': store.getState().user.accessToken },
         })
-        .then((client) => {
+        .then(() => {
           store.dispatch(closeDeleteModal());
           history.push('/home');
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          history.push('/');
+          store.dispatch(errorServer());
+          console.log(error);
+        });
       return next(action);
     case HANDLE_SUBSRIPTION:
       api
@@ -250,7 +273,9 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           if (error.response.status === 403) {
             history.push('/');
+            store.dispatch(errorServer());
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case DELETE_SUB:
@@ -270,7 +295,9 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           if (error.response.status === 403) {
             history.push('/');
+            store.dispatch(errorServer());
           }
+          store.dispatch(errorServer());
         });
       return next(action);
     case SUBMIT_EDIT_CLIENT:
@@ -313,7 +340,9 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           if (error.response.status === 403) {
             history.push('/');
+            store.dispatch(errorServer());
           }
+          store.dispatch(errorServer());
         });
       return next(action);
 
