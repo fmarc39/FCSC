@@ -13,7 +13,7 @@ function App({ isAuth }) {
             <SignIn />
           </Route>
           <Route exact path="/home">
-            {isAuth ? <Home /> : <Redirect to="/" />}
+            <Home />
           </Route>
           <Route exact path="/client/:id">
             <ClientPage />

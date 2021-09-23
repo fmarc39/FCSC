@@ -162,7 +162,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         clientList: state.clientList.filter((client) => {
-          if (client.debt !== null) {
+          if (client.debt !== null || client.debt !== 0) {
             return client;
           }
         }),

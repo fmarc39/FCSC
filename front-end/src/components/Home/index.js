@@ -36,11 +36,6 @@ const Home = ({
     <div>
       <Header />
       <div className="add-client">
-        <div className="add-client__add-btn">
-          <Fab color="primary" aria-label="add" onClick={handleOpenModalBtn}>
-            <AddIcon />
-          </Fab>
-        </div>
         <form className="add-client__form" onSubmit={handleSearchFormSubmit}>
           <TextField
             onChange={handleChangeInput}
@@ -63,6 +58,11 @@ const Home = ({
             <DoneIcon />
           </IconButton>
         </form>
+        <div className="add-client__add-btn">
+          <Fab color="primary" aria-label="add" onClick={handleOpenModalBtn}>
+            <AddIcon />
+          </Fab>
+        </div>
       </div>
       <ClientListTable />
       <AddClientModal />

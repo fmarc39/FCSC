@@ -38,10 +38,7 @@ function createData(
 
 const useStyles = makeStyles({
   root: {
-    margin: '2rem',
-  },
-  container: {
-    maxHeight: 440,
+    margin: '1rem',
   },
 });
 
