@@ -20,6 +20,8 @@ export const OPEN_SNACK_MAIL = 'OPEN_SNACK_MAIL';
 export const OPEN_SNACK_PWD = 'OPEN_SNACK_PWD';
 export const CLOSE_SNACK = 'CLOSE_SNACK';
 export const ERROR_SERVER = 'ERROR_SERVER';
+export const OPEN_INVOICE_MODAL = 'OPEN_INVOICE_MODAL';
+export const CLOSE_INVOICE_MODAL = 'CLOSE_INVOICE_MODAL';
 
 export const openAddClientModal = () => ({
   type: OPEN_ADD_CLIENT_MODAL,
@@ -43,6 +45,10 @@ export const openAddCommentModal = () => ({
 
 export const closeAddCommentModal = () => ({
   type: CLOSE_ADD_COMMENT_MODAL,
+});
+
+export const closeInvoiceModal = () => ({
+  type: CLOSE_INVOICE_MODAL,
 });
 
 export const fetchClientDataFromDb = (clientId) => ({
@@ -78,6 +84,10 @@ export const openEditModal = () => ({
 
 export const openSuscribeModal = () => ({
   type: OPEN_SUSCRIBE_MODAL,
+});
+
+export const openInvoiceModal = () => ({
+  type: OPEN_INVOICE_MODAL,
 });
 
 export const closeSuscriptionModal = () => ({

@@ -10,6 +10,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddPaymentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddPaymentModal.js';
 import AddCommentModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddCommentModal.js';
+import AddInvoiceModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/AddInvoiceModal.js';
 import DeleteClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/DeleteClientModal.js';
 import EditIcon from '@material-ui/icons/Edit';
 import EditClientModal from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/EditClientModal.js';
@@ -43,9 +44,13 @@ const ClientPage = ({
   handleDeletePayment,
   debt,
   handleUpdateDebt,
+  openInvoiceModal,
 }) => {
   const handleAddPaymentBtn = () => {
     openPaymentModal();
+  };
+  const handleOpenInvoiceModal = () => {
+    openInvoiceModal();
   };
   const handleAddCommentBtn = () => {
     openAddCommentModal();
@@ -260,9 +265,9 @@ const ClientPage = ({
                     />
                   </button>
                 </Tooltip>
-                {/* <Tooltip title="Editer une facture" arrow>
+                <Tooltip title="Editer une facture" arrow>
                   <button
-                    onClick={handleAddPaymentBtn}
+                    onClick={handleOpenInvoiceModal}
                     className="content__right__add-invoice-btn"
                   >
                     <img
@@ -271,7 +276,7 @@ const ClientPage = ({
                       className="content__right__add-sub-img"
                     />
                   </button>
-                </Tooltip> */}
+                </Tooltip>
                 <p className="content__title-right">Facturation</p>
                 {clientData.debt && (
                   <div className="content__right-debt">
@@ -288,6 +293,10 @@ const ClientPage = ({
               {!clientData.payments && <p>Pas de facture pour ce client</p>}
               {clientData.payments &&
                 clientData.payments.map((payment) => {
+                  const year = payment.date.slice(0, 4);
+                  const month = payment.date.slice(5, 7);
+                  const day = payment.date.slice(8, 10);
+                  const fullDate = `${day}/${month}/${year}`;
                   return (
                     <div className="content__payment-box">
                       <div className="content__payment-box__delete-btn">
@@ -305,7 +314,7 @@ const ClientPage = ({
                       <p className="content__payment-box__amount">
                         {payment.amount} €
                       </p>
-                      <p>Payé le {payment.date}</p>
+                      <p> &nbsp; Payé le {fullDate}</p>
                     </div>
                   );
                 })}
@@ -350,6 +359,7 @@ const ClientPage = ({
       </div>
       <AddPaymentModal />
       <AddCommentModal />
+      <AddInvoiceModal commercialName={clientData} />
       <AddSucriptionModal />
       <DeleteClientModal />
       <EditClientModal />

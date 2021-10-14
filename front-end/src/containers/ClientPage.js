@@ -7,6 +7,7 @@ import {
   openDeleteModal,
   openEditModal,
   openSuscribeModal,
+  openInvoiceModal,
 } from '../actions/utils';
 
 import { deleteComment } from '../actions/addComment.js';
@@ -26,6 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   openAddCommentModal: () => {
     dispatch(openAddCommentModal());
+  },
+  openInvoiceModal: () => {
+    dispatch(openInvoiceModal());
   },
   fetchClientInfos: (clientId) => {
     dispatch(fetchClientDataFromDb(clientId));

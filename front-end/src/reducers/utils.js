@@ -4,6 +4,8 @@ import {
   OPEN_ADD_PAYMENT_MODAL,
   CLOSE_ADD_PAYMENT_MODAL,
   OPEN_ADD_COMMENT_MODAL,
+  OPEN_INVOICE_MODAL,
+  CLOSE_INVOICE_MODAL,
   CLOSE_ADD_COMMENT_MODAL,
   CLOSE_SUSCRIPTION_MODAL,
   OPEN_DELETE_MODAL,
@@ -22,6 +24,7 @@ const initialState = {
   addClientModal: false,
   addPaymentModal: false,
   addCommentModal: false,
+  addInvoiceModal: false,
   addSuscriptionModal: false,
   deleteClientModal: false,
   editClientModal: false,
@@ -113,6 +116,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         snackPwd: false,
         snackMail: false,
+      };
+    case OPEN_INVOICE_MODAL:
+      return {
+        ...state,
+        addInvoiceModal: true,
+      };
+    case CLOSE_INVOICE_MODAL:
+      return {
+        ...state,
+        addInvoiceModal: false,
       };
     default:
       return state;
