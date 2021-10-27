@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
+import Invoice from './bill.png';
 import Button from '@material-ui/core/Button';
-import { useParams } from 'react-router-dom';
 import './styles.scss';
+import InvoiceComponent from '../AddInvoiceModal/index';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,26 +22,33 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     padding: theme.spacing(2, 4, 3),
   },
+  input: {
+    margin: '5px',
+  },
+  button: {
+    margin: '15px',
+  },
 }));
-const AddInvoiceModal = ({
-  isOpen,
-  closeModal,
-  handleSubmit,
-  changeInput,
-  clientData,
-}) => {
+const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
   const classes = useStyles();
+
+  let [client, setClient] = useState({ ...clientData });
+
   const handleClose = () => {
     closeModal();
   };
-  const clientId = useParams();
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    handleSubmit(clientId.id);
   };
   const handleChangeInput = (event) => {
-    changeInput(event.target.value);
+    let value = event.target.value;
+    let fieldName = event.target.name;
+    setClient({ ...client, [fieldName]: value });
+  };
+
+  const handleInvoiceCreate = () => {
+    invoiceCreate(client);
   };
 
   return (
@@ -65,99 +73,85 @@ const AddInvoiceModal = ({
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={clientData.lastName}
-                  label="Nom"
-                  variant="outlined"
-                  name="lastName"
-                  onChange={handleChangeInput}
-                />
-                <TextField
-                  id="outlined-basic"
-                  required="true"
-                  className={classes.input}
-                  value={clientData.firstName}
-                  label="Prénom"
-                  variant="outlined"
-                  name="firstName"
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div>
-                <TextField
-                  id="outlined-basic"
-                  required="true"
-                  className={classes.input}
-                  value={clientData.commercialName}
+                  value={client.commercial_name}
                   label="Noms commerciaux"
                   variant="outlined"
-                  name="commercialName"
+                  name="commercial_name"
                   onChange={handleChangeInput}
                 />
-                <TextField
-                  id="outlined-basic"
-                  className={classes.input}
-                  value={clientData.fixPhone}
-                  label="Telephone fixe"
-                  type="number"
-                  variant="outlined"
-                  name="fixPhone"
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div>
                 <TextField
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={clientData.celPhone}
-                  label="Telephone portable"
-                  variant="outlined"
-                  type="number"
-                  name="celPhone"
-                  onChange={handleChangeInput}
-                />
-                <TextField
-                  id="outlined-basic"
-                  className={classes.input}
-                  value={clientData.email}
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                  name="email"
-                  onChange={handleChangeInput}
-                />
-              </div>
-              <div>
-                <TextField
-                  id="outlined-basic"
-                  required="true"
-                  className={classes.input}
-                  value={clientData.adress}
+                  value={client.adress}
                   label="Adresse"
                   variant="outlined"
                   name="adress"
                   onChange={handleChangeInput}
                 />
+              </div>
+
+              <div>
                 <TextField
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={clientData.zioCode}
+                  value={client.zip_code}
                   label="Code postal"
                   variant="outlined"
-                  name="zipCode"
+                  name="zip_code"
+                  onChange={handleChangeInput}
+                />
+                <TextField
+                  id="outlined-basic"
+                  required="true"
+                  className={classes.input}
+                  value={client.city}
+                  label="Ville"
+                  variant="outlined"
+                  name="city"
                   onChange={handleChangeInput}
                 />
               </div>
+
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  required="true"
+                  className={classes.input}
+                  label="Dégisnation"
+                  variant="outlined"
+                  name="designation"
+                  onChange={handleChangeInput}
+                />
+                <TextField
+                  id="outlined-basic"
+                  required="true"
+                  className={classes.input}
+                  label="Quantité"
+                  variant="outlined"
+                  name="quantity"
+                  onChange={handleChangeInput}
+                />
+              </div>
+
               <div className="city-input">
                 <TextField
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={clientData.city}
-                  label="Ville"
+                  label="Montant €"
                   variant="outlined"
-                  name="city"
+                  name="Amount"
+                  onChange={handleChangeInput}
+                />
+                <TextField
+                  id="outlined-basic"
+                  required="true"
+                  className={classes.input}
+                  label="Référence"
+                  variant="outlined"
+                  name="ref"
                   onChange={handleChangeInput}
                 />
               </div>
@@ -170,9 +164,9 @@ const AddInvoiceModal = ({
                   type="submit"
                   className={classes.button}
                   startIcon={<SaveIcon />}
-                  onChange={handleChangeInput}
+                  onClick={handleInvoiceCreate}
                 >
-                  Enregistrer
+                  Valider
                 </Button>
               </div>
             </form>

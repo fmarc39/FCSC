@@ -359,7 +359,7 @@ const ClientPage = ({
       </div>
       <AddPaymentModal />
       <AddCommentModal />
-      <AddInvoiceModal commercialName={clientData} />
+      <AddInvoiceModal clientData={clientData} />
       <AddSucriptionModal />
       <DeleteClientModal />
       <EditClientModal />

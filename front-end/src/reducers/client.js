@@ -38,6 +38,16 @@ const initialState = {
   clientList: [],
   clientPage: '',
   clientEditPage: '',
+  invoceInfos: {
+    commercialName: '',
+    adress: '',
+    zipCode: '',
+    city: '',
+    designation: '',
+    quantity: '',
+    amount: '',
+    ref: '',
+  },
 };
 
 const reducer = (state = initialState, action = {}) => {

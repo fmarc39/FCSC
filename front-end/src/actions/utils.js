@@ -22,6 +22,7 @@ export const CLOSE_SNACK = 'CLOSE_SNACK';
 export const ERROR_SERVER = 'ERROR_SERVER';
 export const OPEN_INVOICE_MODAL = 'OPEN_INVOICE_MODAL';
 export const CLOSE_INVOICE_MODAL = 'CLOSE_INVOICE_MODAL';
+export const SUBMIT_INVOICE = 'SUMBIT_INVOICE';
 
 export const openAddClientModal = () => ({
   type: OPEN_ADD_CLIENT_MODAL,
@@ -117,4 +118,9 @@ export const closeSnack = () => ({
 
 export const errorServer = () => ({
   type: ERROR_SERVER,
+});
+
+export const submitInvoice = (payload) => ({
+  type: SUBMIT_INVOICE,
+  payload,
 });
