@@ -13,6 +13,7 @@ import {
   SAVE_CLIENT_DATA_IN_STATE,
   SAVE_EDITED_CLIENT_DATA_IN_STATE,
   GET_FILTER_LIST,
+  SUBMIT_INVOICE,
 } from '../actions/utils';
 import {
   SAVE_SUBSCRIPTION_IN_STATE,
@@ -38,15 +39,16 @@ const initialState = {
   clientList: [],
   clientPage: '',
   clientEditPage: '',
-  invoceInfos: {
-    commercialName: '',
-    adress: '',
-    zipCode: '',
-    city: '',
-    designation: '',
-    quantity: '',
-    amount: '',
-    ref: '',
+  invoiceInfos: {
+    commercialName: 'Groupama',
+    adress: '10 rue des ecoles',
+    zipCode: '39200',
+    city: 'St Claude',
+    designation: '10',
+    quantity: '1',
+    amount: '10',
+    ref: 'OK',
+    date: '31/01/2020',
   },
 };
 
@@ -176,6 +178,21 @@ const reducer = (state = initialState, action = {}) => {
             return client;
           }
         }),
+      };
+    case SUBMIT_INVOICE:
+      return {
+        ...state,
+        invoiceInfos: {
+          ...state.invoiceInfos,
+          commercialName: action.payload.commercial_name,
+          adress: action.payload.adress,
+          zipCode: action.payload.zip_code,
+          city: action.payload.city,
+          designation: action.payload.designation,
+          quantity: action.payload.quantity,
+          amount: action.payload.amount,
+          ref: action.payload.ref,
+        },
       };
     default:
       return state;
