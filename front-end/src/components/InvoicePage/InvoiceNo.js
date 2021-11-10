@@ -24,7 +24,7 @@ const InvoiceNo = ({ invoice }) => (
   <Fragment>
     <View style={styles.invoiceNoContainer}>
       <Text style={styles.label}>Facture N°:</Text>
-      <Text style={styles.invoiceDate}>10</Text>
+      <Text style={styles.invoiceDate}>{invoice.billNumber}</Text>
     </View>
     <View style={styles.invoiceDateContainer}>
       <Text style={styles.label}>Date: </Text>

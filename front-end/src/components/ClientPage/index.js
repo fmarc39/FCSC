@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/Header/index.js';
 import IconButton from '@material-ui/core/IconButton';
@@ -359,7 +359,7 @@ const ClientPage = ({
       </div>
       <AddPaymentModal />
       <AddCommentModal />
-      <AddInvoiceModal clientData={clientData} />
+      {clientData && <AddInvoiceModal clientData={clientData} />}
       <AddSucriptionModal />
       <DeleteClientModal />
       <EditClientModal />

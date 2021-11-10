@@ -5,9 +5,9 @@ import { PDFViewer } from '@react-pdf/renderer';
 import Home from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Home.js';
 import SignIn from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Signin.js';
 import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientPage.js';
-import Invoice from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Invoice';
+import Invoice from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/InvoicePage/index';
 
-function App({ isAuth }) {
+function App({ isAuth, invoiceData }) {
   return (
     <div className="App">
       <Switch>
@@ -24,7 +24,8 @@ function App({ isAuth }) {
           <Route exact path="/invoice">
             <Fragment>
               <PDFViewer width="100%" height="600" className="app">
-                <Invoice />
+                <Invoice invoice={invoiceData} />
+                {console.log(invoiceData)}
               </PDFViewer>
             </Fragment>
           </Route>

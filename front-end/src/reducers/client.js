@@ -24,6 +24,7 @@ import {
   DELETE_PAYMENT_IN_STATE,
   SAVE_UPDATED_DEBT_IN_STATE,
 } from '../actions/addPayment';
+import { EDITINVOICEMODAL, EDITINVOICEMODALITEMS } from '../actions/addInvoice';
 
 const initialState = {
   firstName: '',
@@ -40,16 +41,21 @@ const initialState = {
   clientPage: '',
   clientEditPage: '',
   invoiceInfos: {
-    commercialName: 'Groupama',
-    adress: '10 rue des ecoles',
-    zipCode: '39200',
-    city: 'St Claude',
-    designation: '10',
-    quantity: '1',
-    amount: '10',
-    ref: 'OK',
-    date: '31/01/2020',
+    commercialName: '',
+    adress: '',
+    zipCode: '',
+    city: '',
+    designation: '',
+    billNumber: '',
+    date: '',
   },
+  items: [
+    {
+      quantity: '',
+      amount: '',
+      ref: '',
+    },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -89,6 +95,13 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         clientPage: action.payload,
         clientEditPage: action.payload,
+        invoiceInfos: {
+          ...state.invoiceInfos,
+          commercialName: action.payload.commercial_name,
+          adress: action.payload.adress,
+          zipCode: action.payload.zip_code,
+          city: action.payload.city,
+        },
       };
     case DELETE_COMMENT_IN_STATE:
       return {
@@ -193,6 +206,19 @@ const reducer = (state = initialState, action = {}) => {
           amount: action.payload.amount,
           ref: action.payload.ref,
         },
+      };
+    case EDITINVOICEMODAL:
+      return {
+        ...state,
+        invoiceInfos: {
+          ...state.invoiceInfos,
+          [action.fieldName]: action.value,
+        },
+      };
+    case EDITINVOICEMODALITEMS:
+      return {
+        ...state,
+        items: [{ ...state.items[0], [action.fieldName]: action.value }],
       };
     default:
       return state;

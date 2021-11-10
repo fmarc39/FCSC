@@ -6,8 +6,14 @@ import {
   submitInvoice,
 } from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/utils';
 
+import {
+  editInvoiceModal,
+  editInvoiceModalModalItems,
+} from '/Users/fmarc/Documents/Code/FCSC/front-end/src/actions/addInvoice';
+
 const mapStateToProps = (state) => ({
   isOpen: state.utils.addInvoiceModal,
+  clientDataInvoice: state.client.invoiceInfos,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -16,6 +22,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   invoiceCreate: (invoice) => {
     dispatch(submitInvoice(invoice));
+  },
+  handleInvoiceChange: (fieldName, value) => {
+    dispatch(editInvoiceModal(fieldName, value));
+  },
+  handleInvoiceChangeItems: (fieldName, value) => {
+    dispatch(editInvoiceModalModalItems(fieldName, value));
   },
 });
 

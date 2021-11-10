@@ -14,17 +14,17 @@ const styles = StyleSheet.create({
     marginTop: 24,
     borderWidth: 1,
     borderColor: '#bff0fd',
+    borderTopLeftRadius: '10px',
+    borderTopRightRadius: '10px',
   },
 });
 
 const InvoiceItemsTable = ({ invoice }) => (
   <View style={styles.tableContainer}>
     <InvoiceTableHeader />
-    <InvoiceTableRow items={invoice.quantity} />
-    <InvoiceTableBlankSpace
-      rowsCount={tableRowsCount - invoice.amount.length}
-    />
-    <InvoiceTableFooter items={invoice.amount} />
+    <InvoiceTableRow items={invoice.items} />
+    <InvoiceTableBlankSpace rowsCount={tableRowsCount - invoice.items.length} />
+    <InvoiceTableFooter items={invoice.items} />
   </View>
 );
 

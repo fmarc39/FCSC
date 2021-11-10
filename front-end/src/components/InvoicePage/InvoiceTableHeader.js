@@ -13,33 +13,35 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'bold',
     flexGrow: 1,
+    borderTopLeftRadius: '10px',
+    borderTopRightRadius: '10px',
   },
-  description: {
-    width: '60%',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-  },
-  qty: {
-    width: '10%',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-  },
-  rate: {
+  reference: {
     width: '15%',
     borderRightColor: borderColor,
     borderRightWidth: 1,
   },
-  amount: {
+  designation: {
+    width: '35%',
+    borderRightColor: borderColor,
+    borderRightWidth: 1,
+  },
+  quantity: {
     width: '15%',
+    borderRightColor: borderColor,
+    borderRightWidth: 1,
+  },
+  price: {
+    width: '35%',
   },
 });
 
 const InvoiceTableHeader = () => (
   <View style={styles.container}>
-    <Text style={styles.description}>Item Description</Text>
-    <Text style={styles.qty}>Qty</Text>
-    <Text style={styles.rate}>@</Text>
-    <Text style={styles.amount}>Amount</Text>
+    <Text style={styles.reference}>Référence</Text>
+    <Text style={styles.designation}>Désignation</Text>
+    <Text style={styles.quantity}>Quantité</Text>
+    <Text style={styles.price}>Prix Uni. TTC</Text>
   </View>
 );
 

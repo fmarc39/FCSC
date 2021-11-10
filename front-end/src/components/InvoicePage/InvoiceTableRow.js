@@ -11,29 +11,29 @@ const styles = StyleSheet.create({
     height: 24,
     fontStyle: 'bold',
   },
-  description: {
-    width: '60%',
+  reference: {
+    width: '15%',
     textAlign: 'left',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     paddingLeft: 8,
   },
-  qty: {
-    width: '10%',
+  designation: {
+    width: '35%',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     textAlign: 'right',
     paddingRight: 8,
   },
-  rate: {
+  quantity: {
     width: '15%',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     textAlign: 'right',
     paddingRight: 8,
   },
-  amount: {
-    width: '15%',
+  price: {
+    width: '35%',
     textAlign: 'right',
     paddingRight: 8,
   },
@@ -41,11 +41,13 @@ const styles = StyleSheet.create({
 
 const InvoiceTableRow = ({ items }) => {
   const rows = items.map((item) => (
-    <View style={styles.row} key={item.sno.toString()}>
-      <Text style={styles.description}>{item.desc}</Text>
-      <Text style={styles.qty}>{item.qty}</Text>
-      <Text style={styles.rate}>{item.rate}</Text>
-      <Text style={styles.amount}>{(item.qty * item.rate).toFixed(2)}</Text>
+    <View style={styles.row} key={item.quantity.toString()}>
+      <Text style={styles.reference}>{item.quantity}</Text>
+      <Text style={styles.designation}>{item.quantity}</Text>
+      <Text style={styles.quantity}>{item.ref}</Text>
+      <Text style={styles.price}>
+        {(item.quantity * item.amount).toFixed(2)}
+      </Text>
     </View>
   ));
   return <Fragment>{rows}</Fragment>;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -29,10 +30,18 @@ const useStyles = makeStyles((theme) => ({
     margin: '15px',
   },
 }));
-const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
+const AddInvoiceModal = ({
+  isOpen,
+  closeModal,
+  clientDataInvoice,
+  invoiceCreate,
+  handleInvoiceChange,
+  handleInvoiceChangeItems,
+}) => {
+  console.log(clientDataInvoice);
   const classes = useStyles();
-
-  let [client, setClient] = useState({ ...clientData });
+  const url = '/invoice';
+  const history = useHistory();
 
   const handleClose = () => {
     closeModal();
@@ -42,13 +51,20 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
     event.preventDefault();
   };
   const handleChangeInput = (event) => {
-    let value = event.target.value;
     let fieldName = event.target.name;
-    setClient({ ...client, [fieldName]: value });
+    let value = event.target.value;
+    handleInvoiceChange(fieldName, value);
+  };
+
+  const handleChangeInputItems = (event) => {
+    let fieldName = event.target.name;
+    let value = event.target.value;
+    handleInvoiceChangeItems(fieldName, value);
   };
 
   const handleInvoiceCreate = () => {
-    invoiceCreate(client);
+    invoiceCreate(clientDataInvoice);
+    history.push(url);
   };
 
   return (
@@ -73,17 +89,17 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={client.commercial_name}
+                  value={clientDataInvoice.commercialName}
                   label="Noms commerciaux"
                   variant="outlined"
-                  name="commercial_name"
+                  name="commercialName"
                   onChange={handleChangeInput}
                 />
                 <TextField
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={client.adress}
+                  value={clientDataInvoice.adress}
                   label="Adresse"
                   variant="outlined"
                   name="adress"
@@ -96,17 +112,17 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={client.zip_code}
+                  value={clientDataInvoice.zipCode}
                   label="Code postal"
                   variant="outlined"
-                  name="zip_code"
+                  name="zipCode"
                   onChange={handleChangeInput}
                 />
                 <TextField
                   id="outlined-basic"
                   required="true"
                   className={classes.input}
-                  value={client.city}
+                  value={clientDataInvoice.city}
                   label="Ville"
                   variant="outlined"
                   name="city"
@@ -122,7 +138,7 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   label="Dégisnation"
                   variant="outlined"
                   name="designation"
-                  onChange={handleChangeInput}
+                  onChange={handleChangeInputItems}
                 />
                 <TextField
                   id="outlined-basic"
@@ -131,7 +147,7 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   label="Quantité"
                   variant="outlined"
                   name="quantity"
-                  onChange={handleChangeInput}
+                  onChange={handleChangeInputItems}
                 />
               </div>
 
@@ -142,8 +158,8 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   className={classes.input}
                   label="Montant €"
                   variant="outlined"
-                  name="Amount"
-                  onChange={handleChangeInput}
+                  name="amount"
+                  onChange={handleChangeInputItems}
                 />
                 <TextField
                   id="outlined-basic"
@@ -152,7 +168,7 @@ const AddInvoiceModal = ({ isOpen, closeModal, clientData, invoiceCreate }) => {
                   label="Référence"
                   variant="outlined"
                   name="ref"
-                  onChange={handleChangeInput}
+                  onChange={handleChangeInputItems}
                 />
               </div>
               <div className="save-btn">
