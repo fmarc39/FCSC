@@ -7,7 +7,7 @@ import SignIn from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Si
 import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientPage.js';
 import Invoice from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/InvoicePage/index';
 
-function App({ isAuth, invoiceData }) {
+function App({ isAuth, invoiceData, invoiceItems }) {
   return (
     <div className="App">
       <Switch>
@@ -24,8 +24,8 @@ function App({ isAuth, invoiceData }) {
           <Route exact path="/invoice">
             <Fragment>
               <PDFViewer width="100%" height="600" className="app">
-                <Invoice invoice={invoiceData} />
                 {console.log(invoiceData)}
+                <Invoice invoice={invoiceData} items={invoiceItems} />
               </PDFViewer>
             </Fragment>
           </Route>
