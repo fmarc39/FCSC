@@ -7,7 +7,7 @@ import SignIn from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/Si
 import ClientPage from '/Users/fmarc/Documents/Code/FCSC/front-end/src/containers/ClientPage.js';
 import Invoice from '/Users/fmarc/Documents/Code/FCSC/front-end/src/components/InvoicePage/index';
 
-function App({ isAuth, invoiceData, invoiceItems }) {
+function App({ invoiceData, invoiceItems }) {
   return (
     <div className="App">
       <Switch>
